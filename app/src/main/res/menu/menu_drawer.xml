@@ -26,7 +26,7 @@
                 <item
                     android:id="@+id/item_manage_off"
                     android:icon="@drawable/ic_day_off"
-                    android:title="@string/manage_request_leave"/>
+                    android:title="@string/manage_request_day_off"/>
                 <item
                     android:id="@+id/item_manage_come_late_leave_early"
                     android:icon="@drawable/ic_clock_a"
@@ -64,7 +64,7 @@
                 <item
                     android:id="@+id/item_off"
                     android:icon="@drawable/ic_day_off"
-                    android:title="@string/leave"/>
+                    android:title="@string/day_off"/>
                 <item
                     android:id="@+id/item_come_late_leave_early"
                     android:icon="@drawable/ic_clock_a"

@@ -44,6 +44,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_35"
                     android:layout_marginStart="@dimen/dp_35"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@{viewModel.titleToolbar}"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/sp_20"
@@ -393,7 +395,6 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@color/color_green"
                             android:orientation="horizontal"
                             android:padding="@dimen/dp_10"
                             >
@@ -401,17 +402,17 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/off_have_salary_company_pay"
-                                android:textColor="@color/color_white"
-                                android:textSize="@dimen/sp_16"
+                                android:textColor="@color/color_gray"
+                                android:textSize="@dimen/sp_17"
                                 android:textStyle="bold"
                                 />
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/dp_2"
+                                android:layout_height="@dimen/dp_1"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="@dimen/dp_5"
                                 android:layout_marginStart="@dimen/dp_5"
-                                android:background="@color/color_white"
+                                android:background="@color/color_gray"
                                 />
                         </LinearLayout>
                         <LinearLayout
@@ -492,7 +493,6 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@color/color_green"
                             android:orientation="horizontal"
                             android:padding="@dimen/dp_10"
                             >
@@ -500,17 +500,17 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/off_have_salary_insurance_coverage"
-                                android:textColor="@color/color_white"
-                                android:textSize="@dimen/sp_16"
+                                android:textColor="@color/color_gray"
+                                android:textSize="@dimen/sp_17"
                                 android:textStyle="bold"
                                 />
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/dp_2"
+                                android:layout_height="@dimen/dp_1"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="@dimen/dp_5"
                                 android:layout_marginStart="@dimen/dp_5"
-                                android:background="@color/color_white"
+                                android:background="@color/color_gray"
                                 />
                         </LinearLayout>
                         <LinearLayout
@@ -698,7 +698,6 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@color/color_green"
                             android:orientation="horizontal"
                             android:padding="@dimen/dp_10"
                             >
@@ -706,17 +705,17 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/off_no_salary"
-                                android:textColor="@color/color_white"
-                                android:textSize="@dimen/sp_16"
+                                android:textColor="@color/color_gray"
+                                android:textSize="@dimen/sp_17"
                                 android:textStyle="bold"
                                 />
                             <View
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/dp_2"
+                                android:layout_height="@dimen/dp_1"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="@dimen/dp_5"
                                 android:layout_marginStart="@dimen/dp_5"
-                                android:background="@color/color_white"
+                                android:background="@color/color_gray"
                                 />
                         </LinearLayout>
 

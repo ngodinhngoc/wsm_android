@@ -209,7 +209,7 @@ public class MainViewModel extends BaseObservable implements MainContract.ViewMo
     public void goNextFragmentListRequestOff() {
         setCurrentPage(Page.OFF);
         setCurrentItem(R.id.item_off);
-        setCurrentTitleToolbar(mContext.getResources().getString(R.string.leave));
+        setCurrentTitleToolbar(mContext.getResources().getString(R.string.day_off));
     }
 
     @Override
@@ -230,7 +230,7 @@ public class MainViewModel extends BaseObservable implements MainContract.ViewMo
     public void goNextFragmentListManageRequestOff() {
         setCurrentPage(Page.MANAGE_OFF);
         setCurrentItem(R.id.item_manage_off);
-        setCurrentTitleToolbar(mContext.getResources().getString(R.string.manage_request_leave));
+        setCurrentTitleToolbar(mContext.getResources().getString(R.string.manage_request_day_off));
     }
 
     @Override
@@ -257,7 +257,7 @@ public class MainViewModel extends BaseObservable implements MainContract.ViewMo
     public void goNextFragmentManageListRequestOff() {
         setCurrentPage(Page.MANAGE_OFF);
         setCurrentItem(R.id.item_manage_off);
-        setCurrentTitleToolbar(mContext.getResources().getString(R.string.manage_request_leave));
+        setCurrentTitleToolbar(mContext.getResources().getString(R.string.manage_request_day_off));
     }
 
     @Override

@@ -177,9 +177,9 @@ public class RequestOvertimeViewModel extends BaseObservable
 
     public String getTitleToolbar() {
         if (mActionType == ActionType.ACTION_CREATE) {
-            return mContext.getString(R.string.request_overtime);
+            return mContext.getString(R.string.create_request_ot);
         }
-        return mContext.getString(R.string.edit_request_overtime);
+        return mContext.getString(R.string.edit_overtime_request);
     }
 
     @Bindable

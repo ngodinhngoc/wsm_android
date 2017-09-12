@@ -548,12 +548,12 @@ public class ConfirmRequestOffViewModel extends BaseObservable
 
     public String getTitleToolbar() {
         if (mActionType == ActionType.ACTION_CREATE) {
-            return mContext.getString(R.string.confirm_request_leave);
+            return mContext.getString(R.string.confirm_day_off_request);
         }
         if (mActionType == ActionType.ACTION_DETAIL) {
-            return mContext.getString(R.string.detail_request_leave);
+            return mContext.getString(R.string.detail_day_off_request);
         }
-        return mContext.getString(R.string.confirm_request_leave);
+        return mContext.getString(R.string.confirm_edit_day_off_request);
     }
 
     public String getStartDateHaveSalary() {

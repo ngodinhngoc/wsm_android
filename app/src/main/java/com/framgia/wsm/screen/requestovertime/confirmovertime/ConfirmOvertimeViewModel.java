@@ -206,12 +206,12 @@ public class ConfirmOvertimeViewModel extends BaseObservable
 
     public String getTitleToolbar() {
         if (mActionType == ActionType.ACTION_CREATE) {
-            return mContext.getString(R.string.confirm_request_overtime);
+            return mContext.getString(R.string.confirm_overtime_request);
         }
         if (mActionType == ActionType.ACTION_DETAIL) {
-            return mContext.getString(R.string.detail_request_overtime);
+            return mContext.getString(R.string.detail_overtime_request);
         }
-        return mContext.getString(R.string.confirm_edit_request_overtime);
+        return mContext.getString(R.string.confirm_edit_overtime_request);
     }
 
     public boolean isDetail() {

@@ -1591,7 +1591,7 @@ public class RequestLeaveViewModel extends BaseRequestLeave
         if (mActionType == ActionType.ACTION_CREATE) {
             return mContext.getString(R.string.create_others_request);
         }
-        return mContext.getString(R.string.edit_request);
+        return mContext.getString(R.string.edit_others_request);
     }
 
     private void initShifts() {
