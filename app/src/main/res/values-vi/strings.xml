@@ -25,7 +25,7 @@
     <string name="holiday_calendar">Lịch ngày nghỉ</string>
     <string name="personal_request">YÊU CẦU CÁ NHÂN</string>
     <string name="request_overtime">Yêu cầu làm ngoài giờ</string>
-    <string name="leave">Xin nghỉ</string>
+    <string name="day_off">Xin nghỉ</string>
     <string name="other">Khác</string>
     <string name="workspaces_data">DỮ LIỆU WORKSPACES</string>
     <string name="workspaces">Dữ liệu Workspaces</string>
@@ -33,7 +33,7 @@
     <string name="manage_requests">QUẢN LÝ YÊU CẦU</string>
     <string name="manage_request_overtime">Quản lý yêu cầu làm ngoài giờ</string>
     <string name="manage_request_others">Quản lý yêu cầu khác</string>
-    <string name="manage_request_leave">Quản lý yêu cầu xin nghỉ</string>
+    <string name="manage_request_day_off">Quản lý yêu cầu xin nghỉ</string>
 
     <string name="create_request_ot">Tạo yêu cầu làm ngoài giờ</string>
     <string name="create_request_leave">Tạo yêu cầu xin nghỉ</string>
@@ -113,7 +113,7 @@
     <string name="compensation_time">Đăng ký thời gian làm bù</string>
     <string name="example_time_from">Ví dụ: 2017/05/20 17:30</string>
     <string name="example_time_to">Ví dụ: 2017/05/20 18:30</string>
-    <string name="confirm_others_request">Xác nhận yêu cầu</string>
+    <string name="confirm_others_request">Xác nhận yêu cầu khác</string>
     <string name="submit">Gửi đi</string>
     <string name="next">Tiếp theo</string>
     <string name="status">Trạng thái</string>
@@ -124,9 +124,10 @@
     <string name="day_session">Buổi</string>
     <string name="time_request">Thời gian yêu cầu:</string>
     <string name="request_ot">Yêu cầu làm ngoài giờ</string>
-    <string name="confirm_request_overtime">Xác nhận yêu cầu làm ngoài giờ</string>
+    <string name="confirm_overtime_request">Xác nhận yêu cầu làm ngoài giờ</string>
     <string name="request_off">Yêu cầu xin nghỉ</string>
-    <string name="confirm_request_leave">Xác nhận yêu cầu xin nghỉ</string>
+    <string name="confirm_day_off_request">Xác nhận cầu xin nghỉ</string>
+    <string name="confirm_edit_day_off_request">Xác nhận sửa yêu cầu xin nghỉ</string>
     <string name="note">Lưu ý: \u0020</string>
     <string name="am_pm">Buổi sáng: am - am;  Buổi chiều: pm - pm;  Cả ngày: am - pm</string>
     <string name="off_have_salary_from">Nghỉ có lương từ</string>
@@ -137,8 +138,8 @@
     <string name="edit">Sửa</string>
     <string name="delete">Xóa</string>
     <string name="being_handled_by">Nhóm đang xử lý</string>
-    <string name="confirm_edit_request_overtime">Xác nhận sửa yêu cầu làm ngoài giờ</string>
-    <string name="confirm_edit_request_leave">Sửa yêu cầu xin nghỉ</string>
+    <string name="confirm_edit_overtime_request">Xác nhận sửa yêu cầu làm ngoài giờ</string>
+    <string name="edit_day_off_request">Sửa yêu cầu xin nghỉ</string>
     <string name="edit_profile">Chỉnh sửa thông tin cá nhân</string>
     <string name="change_password">Đổi mật khẩu</string>
     <string name="default_group_and_workspace">Nhóm và workspace mặc định</string>
@@ -151,7 +152,7 @@
     <string name="notification_Change_group">Thông báo thay đổi nhóm</string>
     <string name="update">Cập nhật</string>
     <string name="receive_notification_or_email">Nhận thông báo hoặc email</string>
-    <string name="edit_request_overtime">Sửa yêu cầu làm ngoài giờ</string>
+    <string name="edit_overtime_request">Sửa yêu cầu làm ngoài giờ</string>
     <string name="type_leave">Hình thức xin nghỉ:</string>
     <string name="statu">Trạng thái:</string>
 
@@ -237,8 +238,8 @@
     <string name="miscarriage_leave_error">Nghỉ sảy thai không được quá %s ngày!</string>
     <string name="maternity_leave_error">Nghỉ thai sản không được quá %s ngày!</string>
     <string name="wife_labor_leave_error">Nghỉ vợ sinh không được quá %s ngày!</string>
-    <string name="detail_request_leave">Chi tiết yêu cầu xin nghỉ</string>
-    <string name="detail_request_overtime">Chi tiết yêu cầu làm ngoài giờ</string>
+    <string name="detail_day_off_request">Chi tiết yêu cầu xin nghỉ</string>
+    <string name="detail_overtime_request">Chi tiết yêu cầu làm ngoài giờ</string>
     <string name="confirm_delete">Xác nhận xóa</string>
     <string name="do_you_want_delete_this_request">Bạn có chắc chắn muốn xóa yêu cầu này?</string>
     <string name="company">Công ty</string>
@@ -360,9 +361,9 @@
     <string name="change_password_success">Mật khẩu của bạn đã được thay đổi thành công!</string>
     <string name="format_date_yyyy_mm_dd">dd/MM/yyyy</string>
     <string name="invalid_current_password">Mật khẩu hiện tại không hợp lệ!</string>
-    <string name="detail_others_request">Chi tiết yêu cầu</string>
-    <string name="confirm_edit_others_request">Xác nhận sửa yêu cầu</string>
-    <string name="edit_request">Sửa yêu cầu</string>
+    <string name="detail_others_request">Chi tiết yêu cầu khác</string>
+    <string name="confirm_edit_others_request">Xác nhận sửa yêu cầu khác</string>
+    <string name="edit_others_request">Sửa yêu cầu khác</string>
     <string name="request_information">Chi tiết yêu cầu</string>
     <string name="can_not_load_data">Không tải được dữ liệu. Vui lòng kiểm tra lại!</string>
     <string name="can_not_find_request">Không tìm thấy yêu cầu!</string>

@@ -1035,7 +1035,7 @@ public class RequestOffViewModel extends BaseRequestOff
         if (mActionType == ActionType.ACTION_CREATE) {
             return mContext.getString(R.string.create_request_leave);
         }
-        return mContext.getString(R.string.confirm_edit_request_leave);
+        return mContext.getString(R.string.edit_day_off_request);
     }
 
     public void validateNumberDayHaveSalary() {

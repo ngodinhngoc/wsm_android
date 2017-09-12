@@ -44,6 +44,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_35"
                     android:layout_marginStart="@dimen/dp_35"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@{viewModel.titleToolbar}"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/sp_20"
