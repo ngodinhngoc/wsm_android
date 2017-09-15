@@ -3,11 +3,15 @@ package com.framgia.wsm.screen.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.framgia.wsm.MainApplication;
 import com.framgia.wsm.R;
+import com.framgia.wsm.data.event.InternetEvent;
 import com.framgia.wsm.data.event.UnauthorizedEvent;
 import com.framgia.wsm.data.event.UpdateNumberNotificationEvent;
 import com.framgia.wsm.databinding.ActivityMainBinding;
@@ -39,6 +43,7 @@ public class MainActivity extends BaseActivity implements ProfileFragment.Update
     private Handler mHandler;
     private Runnable mRunnable;
     private boolean mIsDoubleTapBack = false;
+    private Snackbar mSnackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +66,19 @@ public class MainActivity extends BaseActivity implements ProfileFragment.Update
                 mIsDoubleTapBack = false;
             }
         };
+        initData(binding);
     }
 
     public boolean isOpenAppByClickNotification() {
         return StringUtils.isNotBlank(getIntent().getStringExtra(EXTRA_NOTIFICATION_REQUEST_TYPE));
+    }
+
+    private void initData(ActivityMainBinding binding) {
+        mSnackbar = Snackbar.make(binding.linearLayout, R.string.no_network_connection,
+                Snackbar.LENGTH_LONG);
+        TextView textView = (TextView) mSnackbar.getView()
+                .findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(Color.WHITE);
     }
 
     @Override
@@ -154,5 +168,16 @@ public class MainActivity extends BaseActivity implements ProfileFragment.Update
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onUpdateNumberNotificationEvent(UpdateNumberNotificationEvent event) {
         mViewModel.updateNotificationUnRead();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onInternetEvent(InternetEvent event) {
+        showSnackBar();
+    }
+
+    private void showSnackBar() {
+        if (!mSnackbar.isShown()) {
+            mSnackbar.show();
+        }
     }
 }

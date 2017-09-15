@@ -126,6 +126,7 @@ public class ManageListRequestsViewModel extends BaseObservable
 
     @Override
     public void onGetListRequestManageError(BaseException exception) {
+        setLoading(false);
         mEventStatusFromNotifications = false;
         setNotificationData(mContext.getString(R.string.can_not_load_data));
         setShowProgress(false);

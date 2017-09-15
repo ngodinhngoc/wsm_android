@@ -381,4 +381,6 @@
     <string name="can_not_find_request">Can\'t find request!</string>
     <string name="approve">Approve</string>
     <string name="number_hour">Number hours</string>
+    <string name="no_network_connection">No Network Connection !</string>
+
 </resources>

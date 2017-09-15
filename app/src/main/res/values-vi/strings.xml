@@ -369,4 +369,6 @@
     <string name="can_not_find_request">Không tìm thấy yêu cầu!</string>
     <string name="approve">Chấp nhận</string>
     <string name="number_hour">Số giờ OT</string>
+    <string name="no_network_connection">Không có kết nối mạng !</string>
+
 </resources>
