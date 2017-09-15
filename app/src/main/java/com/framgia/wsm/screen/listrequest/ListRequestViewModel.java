@@ -165,6 +165,7 @@ public class ListRequestViewModel extends BaseObservable
 
     @Override
     public void onGetListRequestError(BaseException e) {
+        setLoading(false);
         mEventStatusFromNotifications = false;
         setNotificationLoadData(mContext.getString(R.string.can_not_load_data));
         setShowProgress(false);

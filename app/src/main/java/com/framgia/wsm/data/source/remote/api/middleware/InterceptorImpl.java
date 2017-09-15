@@ -2,8 +2,10 @@ package com.framgia.wsm.data.source.remote.api.middleware;
 
 import android.content.Context;
 import com.framgia.wsm.R;
+import com.framgia.wsm.data.event.InternetEvent;
 import com.framgia.wsm.data.event.UnauthorizedEvent;
 import com.framgia.wsm.data.source.TokenRepository;
+import com.framgia.wsm.utils.InternetManager;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import okhttp3.Interceptor;
@@ -21,16 +23,22 @@ public class InterceptorImpl implements Interceptor {
     private static final String KEY_LOCATE = "WSM-LOCALE";
     private Context mContext;
     private TokenRepository mTokenRepository;
+    private InternetManager mInternetManager;
 
-    public InterceptorImpl(Context applicationContext, TokenRepository tokenRepository) {
+    public InterceptorImpl(Context applicationContext, TokenRepository tokenRepository,
+            InternetManager internetManager) {
         mContext = applicationContext;
         mTokenRepository = tokenRepository;
+        mInternetManager = internetManager;
     }
 
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request.Builder builder = initializeHeader(chain);
         Request request = builder.build();
+        if (!mInternetManager.isConnection(mContext)) {
+            EventBus.getDefault().post(new InternetEvent());
+        }
         Response response = chain.proceed(request);
         if (response.code() == HttpURLConnection.HTTP_UNAUTHORIZED) {
             EventBus.getDefault().post(new UnauthorizedEvent());

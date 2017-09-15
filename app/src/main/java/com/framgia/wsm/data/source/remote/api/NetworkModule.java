@@ -9,7 +9,7 @@ import com.framgia.wsm.data.source.remote.api.middleware.RxErrorHandlingCallAdap
 import com.framgia.wsm.data.source.remote.api.service.BooleanAdapter;
 import com.framgia.wsm.data.source.remote.api.service.IntegerAdapter;
 import com.framgia.wsm.data.source.remote.api.service.WSMApi;
-import com.framgia.wsm.utils.Constant;
+import com.framgia.wsm.utils.InternetManager;
 import com.framgia.wsm.utils.dagger.AppScope;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -68,9 +68,9 @@ public class NetworkModule {
 
     @AppScope
     @Provides
-    public Interceptor provideInterceptor(Application application,
-            TokenRepository tokenRepository) {
-        return new InterceptorImpl(application, tokenRepository);
+    public Interceptor provideInterceptor(Application application, TokenRepository tokenRepository,
+            InternetManager internetManager) {
+        return new InterceptorImpl(application, tokenRepository, internetManager);
     }
 
     @AppScope
@@ -110,5 +110,11 @@ public class NetworkModule {
     @Provides
     public WSMApi provideNameApi(Retrofit retrofit) {
         return retrofit.create(WSMApi.class);
+    }
+
+    @AppScope
+    @Provides
+    public InternetManager provideInternetManager() {
+        return new InternetManager();
     }
 }

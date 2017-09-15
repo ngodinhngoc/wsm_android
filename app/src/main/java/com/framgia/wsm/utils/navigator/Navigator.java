@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import android.util.Patterns;
 import android.widget.Toast;
 import com.framgia.wsm.R;
+import com.framgia.wsm.utils.Constant;
 import com.framgia.wsm.utils.TypeToast;
 import es.dmoral.toasty.Toasty;
 
@@ -221,6 +222,9 @@ public class Navigator {
     }
 
     public void showToastCustom(@TypeToast int typeToast, String message) {
+        if (message.contains(Constant.UNABLE_TO_RESOLVE_HOST)) {
+            return;
+        }
         switch (typeToast) {
             case TypeToast.SUCCESS:
                 Toasty.success(mActivity, message, Toast.LENGTH_SHORT, true).show();
