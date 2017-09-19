@@ -17,12 +17,7 @@ buildscript {
 allprojects {
   repositories {
     jcenter()
-    maven {
-      url 'https://jitpack.io'
-    }
-    maven {
-      url "https://maven.google.com"
-    }
+    maven { url 'https://jitpack.io' }
   }
 }
 
@@ -45,8 +40,8 @@ ext {
   targetSdkVersion = 25
 
   // Version code & name
-  versionCode = 3
-  versionName = '1.0.1'
+  versionCode = 4
+  versionName = '1.0.2'
   versionCodeRelease = 1
-  versionNameRelease = '1.0.1'
+  versionNameRelease = '1.0.2'
 }
