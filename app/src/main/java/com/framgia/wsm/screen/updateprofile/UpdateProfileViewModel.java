@@ -224,6 +224,8 @@ public class UpdateProfileViewModel extends BaseObservable
     }
 
     public void onPickDate(View view) {
+        mDialogManager.dialogDatePicker(this, DateTimeUtils.getCalendarFromDate(mBirthday,
+                mContext.getString(R.string.format_date_mm_dd_yyyy)));
         mDialogManager.showDatePickerDialog();
     }
 
