@@ -33,6 +33,7 @@ public class NotificationViewModel extends BaseObservable implements Notificatio
     private Navigator mNavigator;
     private DialogManager mDialogManager;
     private Context mContext;
+    private boolean mIsLoadMoreRecyclerView;
 
     NotificationViewModel(Context context, NotificationContract.Presenter presenter,
             NotificationAdapter notificationAdapter, Navigator navigator,
@@ -46,6 +47,7 @@ public class NotificationViewModel extends BaseObservable implements Notificatio
         mPresenter.getNotification(mPage);
         mNavigator = navigator;
         mDialogManager = dialogManager;
+        mIsLoadMoreRecyclerView = true;
     }
 
     @Override
@@ -86,6 +88,9 @@ public class NotificationViewModel extends BaseObservable implements Notificatio
         setShowProgress(false);
         mPage++;
         mNotificationAdapter.updateData(list);
+        if (list.isEmpty()) {
+            mIsLoadMoreRecyclerView = false;
+        }
     }
 
     @Override
@@ -96,8 +101,10 @@ public class NotificationViewModel extends BaseObservable implements Notificatio
 
     @Override
     public void onLoadMoreNotification() {
-        setShowProgress(true);
-        mPresenter.getNotification(mPage);
+        if (mIsLoadMoreRecyclerView) {
+            setShowProgress(true);
+            mPresenter.getNotification(mPage);
+        }
     }
 
     @Override

@@ -81,6 +81,7 @@ public class ManageListRequestsViewModel extends BaseObservable
     private int mCutOffDate;
     private String mNotificationData;
     private boolean mEventStatusFromNotifications;
+    private boolean mIsLoadMoreRecyclerView;
 
     ManageListRequestsViewModel(Context context, ManageListRequestsContract.Presenter presenter,
             DialogManager dialogManager, ManageListRequestsAdapter manageListRequestsAdapter,
@@ -112,6 +113,7 @@ public class ManageListRequestsViewModel extends BaseObservable
         mQueryRequest.setStatus(String.valueOf(mCurrentPositionStatus));
         mQueryRequest.setPage(String.valueOf(mPage));
         setLoadDataFirstTime(true);
+        mIsLoadMoreRecyclerView = true;
     }
 
     @Override
@@ -263,8 +265,10 @@ public class ManageListRequestsViewModel extends BaseObservable
 
     @Override
     public void onLoadMoreListRequest() {
-        setShowProgress(true);
-        mPresenter.getListAllRequestManageNoProgressDialog(mRequestType, mQueryRequest, true);
+        if (mIsLoadMoreRecyclerView) {
+            setShowProgress(true);
+            mPresenter.getListAllRequestManageNoProgressDialog(mRequestType, mQueryRequest, true);
+        }
     }
 
     @Override
@@ -431,8 +435,10 @@ public class ManageListRequestsViewModel extends BaseObservable
         mQueryRequest.setPage(String.valueOf(mPage));
         if (isLoadMore) {
             checkTotalRequestSelected();
-        } else {
-            if (size == 0) {
+        }
+        if (size == 0) {
+            mIsLoadMoreRecyclerView = false;
+            if (!isLoadMore) {
                 setVisiableLayoutDataNotFound(true);
             }
         }
@@ -610,6 +616,7 @@ public class ManageListRequestsViewModel extends BaseObservable
         setVisiableLayoutDataNotFound(false);
         setSelectAll(false);
         setTotalRequestSelected(String.valueOf(0));
+        mIsLoadMoreRecyclerView = true;
     }
 
     @Bindable
