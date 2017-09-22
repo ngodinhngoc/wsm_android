@@ -8,7 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
-import com.android.databinding.library.baseAdapters.BR;
+
+import com.framgia.wsm.BR;
 import com.framgia.wsm.R;
 import com.framgia.wsm.data.model.Branch;
 import com.framgia.wsm.data.model.RequestOverTime;
@@ -38,7 +39,7 @@ import static com.framgia.wsm.utils.common.DateTimeUtils.INPUT_TIME_FORMAT;
 public class ConfirmOvertimeViewModel extends BaseObservable
         implements ConfirmOvertimeContract.ViewModel {
 
-    private static final String TAG = "ConfirmOvertimeViewModel";
+    private static final String TAG = ConfirmOvertimeViewModel.class.getSimpleName();
 
     private Context mContext;
     private ConfirmOvertimeContract.Presenter mPresenter;

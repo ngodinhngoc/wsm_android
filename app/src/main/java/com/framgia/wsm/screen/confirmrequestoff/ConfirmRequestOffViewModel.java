@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
-import com.android.databinding.library.baseAdapters.BR;
+import com.framgia.wsm.BR;
 import com.framgia.wsm.R;
 import com.framgia.wsm.data.model.OffRequest;
 import com.framgia.wsm.data.model.OffType;
@@ -38,7 +38,7 @@ import static com.framgia.wsm.utils.common.DateTimeUtils.FORMAT_DATE;
 
 public class ConfirmRequestOffViewModel extends BaseObservable
         implements ConfirmRequestOffContract.ViewModel {
-    private static final String TAG = "ConfirmRequestOffViewModel";
+    private static final String TAG = ConfirmRequestOffViewModel.class.getSimpleName();
     private static final String ANNUAL = "Annual";
 
     private Context mContext;
