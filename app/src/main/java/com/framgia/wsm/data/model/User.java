@@ -5,7 +5,6 @@ import android.os.Parcelable;
 import com.framgia.wsm.R;
 import com.framgia.wsm.screen.requestleave.RequestLeaveViewModel;
 import com.framgia.wsm.utils.UserType;
-import com.framgia.wsm.utils.common.DateTimeUtils;
 import com.framgia.wsm.utils.common.StringUtils;
 import com.framgia.wsm.utils.validator.Rule;
 import com.framgia.wsm.utils.validator.ValidType;
@@ -100,6 +99,19 @@ public class User extends BaseModel implements Parcelable {
     private int mSpecial;
     private Setting mSetting;
 
+    @Expose
+    @SerializedName("identify_info")
+    private IdentifyInfo mIdentifyInfo;
+    @Expose
+    @SerializedName("general_info")
+    private GeneralInfo mGeneralInfo;
+    @Expose
+    @SerializedName("bank_info")
+    private BankInfo mBankInfo;
+    @Expose
+    @SerializedName("address")
+    private Address mAddress;
+
     public User() {
     }
 
@@ -126,6 +138,10 @@ public class User extends BaseModel implements Parcelable {
         mIsManage = in.readByte() != 0;
         mSpecial = in.readInt();
         mSetting = in.readParcelable(Setting.class.getClassLoader());
+        mIdentifyInfo = in.readParcelable(IdentifyInfo.class.getClassLoader());
+        mGeneralInfo = in.readParcelable(GeneralInfo.class.getClassLoader());
+        mBankInfo = in.readParcelable(BankInfo.class.getClassLoader());
+        mAddress = in.readParcelable(Address.class.getClassLoader());
     }
 
     @Override
@@ -152,6 +168,10 @@ public class User extends BaseModel implements Parcelable {
         dest.writeByte((byte) (mIsManage ? 1 : 0));
         dest.writeInt(mSpecial);
         dest.writeParcelable(mSetting, flags);
+        dest.writeParcelable(mIdentifyInfo, flags);
+        dest.writeParcelable(mGeneralInfo, flags);
+        dest.writeParcelable(mBankInfo, flags);
+        dest.writeParcelable(mAddress, flags);
     }
 
     @Override
@@ -363,5 +383,37 @@ public class User extends BaseModel implements Parcelable {
         return mLeaveTypes.get(currentLeaveTypePosition).isFollowTimeCompany() ? mBranches.get(
                 currentBranchPosition).getShifts().get(0).getMaxLevesEarly()
                 : mLeaveTypes.get(currentLeaveTypePosition).getMaxLeaveDuration();
+    }
+
+    public IdentifyInfo getIdentifyInfo() {
+        return mIdentifyInfo;
+    }
+
+    public void setIdentifyInfo(IdentifyInfo identifyInfo) {
+        mIdentifyInfo = identifyInfo;
+    }
+
+    public GeneralInfo getGeneralInfo() {
+        return mGeneralInfo;
+    }
+
+    public void setGeneralInfo(GeneralInfo generalInfo) {
+        mGeneralInfo = generalInfo;
+    }
+
+    public BankInfo getBankInfo() {
+        return mBankInfo;
+    }
+
+    public void setBankInfo(BankInfo bankInfo) {
+        mBankInfo = bankInfo;
+    }
+
+    public Address getAddress() {
+        return mAddress;
+    }
+
+    public void setAddress(Address address) {
+        mAddress = address;
     }
 }

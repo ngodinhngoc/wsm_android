@@ -382,4 +382,12 @@
     <string name="approve">Approve</string>
     <string name="number_hour">Number hours</string>
     <string name="no_network_connection">No Network Connection !</string>
+
+    <!-- Information Profile -->
+    <string name="name">Name:</string>
+    <string name="nationality">Nationality:</string>
+    <string name="email_">Email:</string>
+    <string name="gender_">Gender:</string>
+    <string name="birthday_">Birthday:</string>
+
 </resources>
