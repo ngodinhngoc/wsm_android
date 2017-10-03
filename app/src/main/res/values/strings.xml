@@ -384,10 +384,27 @@
     <string name="no_network_connection">No Network Connection !</string>
 
     <!-- Information Profile -->
+    <string name="view_more">View More</string>
+    <string name="empty">Empty !</string>
+    <string name="working_information">Working Information</string>
+    <string name="other_information">Other Information</string>
     <string name="name">Name:</string>
     <string name="nationality">Nationality:</string>
     <string name="email_">Email:</string>
     <string name="gender_">Gender:</string>
     <string name="birthday_">Birthday:</string>
+    <string name="identification_passport">Identification/Passport</string>
+    <string name="personal_email">Personal email</string>
+    <string name="place_of_birth">Place of birth</string>
+    <string name="current_address">Current address</string>
+    <string name="permanent_address">Permanent address</string>
+    <string name="marital_status">Marital status</string>
+    <string name="vehicle">Vehicle</string>
+    <string name="bank_info">Bank info</string>
+    <string name="distance_from_office">Distance from office</string>
+    <string name="home_phone">Home phone</string>
+    <string name="number_of_child">Number of child</string>
+    <string name="license_plate">License plate</string>
+    <string name="account_id">Account id</string>
 
 </resources>

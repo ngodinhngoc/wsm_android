@@ -18,7 +18,6 @@ import com.framgia.wsm.screen.updateprofile.UpdateProfileActivity;
 import com.framgia.wsm.utils.Constant;
 import com.framgia.wsm.utils.common.DateTimeUtils;
 import com.framgia.wsm.utils.navigator.Navigator;
-import com.framgia.wsm.utils.string.StringUtils;
 
 /**
  * Exposes the data to be used in the Profile screen.
@@ -34,16 +33,14 @@ public class ProfileViewModel extends BaseObservable implements ProfileContract.
     private GroupAdapter mGroupAdapter;
     private User mUser;
     private boolean mIsLoadDataFirstTime;
-    private boolean mIsVisibleStartProbation;
-    private boolean mIsVisibleEndProbation;
-    private boolean mIsVisibleContractDate;
+
     private String mAvatar;
     private String mBirthday;
     private String mContractDate;
     private String mStartProbationDate;
     private String mEndProbationDate;
 
-    public ProfileViewModel(Context context, ProfileContract.Presenter presenter,
+    ProfileViewModel(Context context, ProfileContract.Presenter presenter,
             Navigator navigator, BranchAdapter branchAdapter, GroupAdapter groupAdapter) {
         mContext = context;
         mPresenter = presenter;
@@ -74,9 +71,7 @@ public class ProfileViewModel extends BaseObservable implements ProfileContract.
         mBranchAdapter.updateDataBranch(mUser.getBranches());
         mGroupAdapter.updateDataGroup(mUser.getGroups());
         mIsLoadDataFirstTime = false;
-        setVisibleStartProbation(StringUtils.isBlank(mUser.getStartProbationDate()));
-        setVisibleEndProbation(StringUtils.isBlank(mUser.getEndProbationDate()));
-        setVisibleContractDate(StringUtils.isBlank(mUser.getContractDate()));
+
         setAvatar(mUser.getAvatar());
         setBirthday(mUser.getBirthday());
         setContractDate(mUser.getContractDate());
@@ -162,36 +157,6 @@ public class ProfileViewModel extends BaseObservable implements ProfileContract.
         return DateTimeUtils.convertUiFormatToDataFormat(dataInput,
                 DateTimeUtils.DATE_FORMAT_YYYY_MM_DD_2,
                 mContext.getString(R.string.format_date_mm_dd_yyyy));
-    }
-
-    private void setVisibleStartProbation(boolean visibleStartProbation) {
-        mIsVisibleStartProbation = visibleStartProbation;
-        notifyPropertyChanged(BR.visibleStartProbation);
-    }
-
-    private void setVisibleEndProbation(boolean visibleEndProbation) {
-        mIsVisibleEndProbation = visibleEndProbation;
-        notifyPropertyChanged(BR.visibleEndProbation);
-    }
-
-    @Bindable
-    public boolean isVisibleStartProbation() {
-        return mIsVisibleStartProbation;
-    }
-
-    @Bindable
-    public boolean isVisibleEndProbation() {
-        return mIsVisibleEndProbation;
-    }
-
-    @Bindable
-    public boolean isVisibleContractDate() {
-        return mIsVisibleContractDate;
-    }
-
-    private void setVisibleContractDate(boolean visibleContractDate) {
-        mIsVisibleContractDate = visibleContractDate;
-        notifyPropertyChanged(BR.visibleContractDate);
     }
 
     public BranchAdapter getBranchAdapter() {

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/tools"
     xmlns:tools="http://schemas.android.com/tools"
     >
 
@@ -28,7 +26,46 @@
             android:orientation="horizontal"
             >
             <ImageView
-                app:srcCompat="@drawable/ic_email"
+                tools:ignore="ContentDescription"
+                style="@style/StyleIconConfirm"
+                />
+            <android.support.design.widget.TextInputLayout
+                style="@style/StyleTextHintEditProfile"
+                >
+                <EditText
+                    android:hint="@string/identification_passport"
+                    style="@style/StyleText"
+                    />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                tools:ignore="ContentDescription"
+                style="@style/StyleIconConfirm"
+                />
+            <android.support.design.widget.TextInputLayout
+                style="@style/StyleTextHintEditProfile"
+                >
+                <EditText
+                    android:hint="@string/personal_email"
+                    style="@style/StyleText"
+                    />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+            <ImageView
                 tools:ignore="ContentDescription"
                 style="@style/StyleIconConfirm"
                 />
@@ -37,9 +74,8 @@
                 >
                 <EditText
                     android:ellipsize="end"
-                    android:hint="@string/email"
-                    android:maxLines="1"
-                    bind:setInformationUser="@{viewModel.user.email}"
+                    android:hint="@string/place_of_birth"
+                    android:maxLines="2"
                     style="@style/StyleText"
                     />
             </android.support.design.widget.TextInputLayout>
@@ -52,7 +88,6 @@
             android:orientation="horizontal"
             >
             <ImageView
-                app:srcCompat="@drawable/ic_contract"
                 tools:ignore="ContentDescription"
                 style="@style/StyleIconConfirm"
                 />
@@ -61,9 +96,8 @@
                 >
                 <EditText
                     android:ellipsize="end"
-                    android:hint="@string/company"
+                    android:hint="@string/current_address"
                     android:maxLines="1"
-                    bind:setInformationUser="@{viewModel.user.company.companyName}"
                     style="@style/StyleText"
                     />
             </android.support.design.widget.TextInputLayout>
@@ -76,7 +110,6 @@
             android:orientation="horizontal"
             >
             <ImageView
-                app:srcCompat="@drawable/ic_holiday_calendar"
                 tools:ignore="ContentDescription"
                 style="@style/StyleIconConfirm"
                 />
@@ -85,9 +118,8 @@
                 >
                 <EditText
                     android:ellipsize="end"
-                    android:hint="@string/start_probation_date"
-                    android:maxLines="1"
-                    bind:setInformationUser="@{viewModel.startProbationDate}"
+                    android:hint="@string/permanent_address"
+                    android:maxLines="2"
                     style="@style/StyleText"
                     />
             </android.support.design.widget.TextInputLayout>
@@ -100,7 +132,6 @@
             android:orientation="horizontal"
             >
             <ImageView
-                app:srcCompat="@drawable/ic_holiday_calendar"
                 tools:ignore="ContentDescription"
                 style="@style/StyleIconConfirm"
                 />
@@ -108,10 +139,7 @@
                 style="@style/StyleTextHintEditProfile"
                 >
                 <EditText
-                    android:ellipsize="end"
-                    android:hint="@string/end_probation_date"
-                    android:maxLines="1"
-                    bind:setInformationUser="@{viewModel.endProbationDate}"
+                    android:hint="@string/marital_status"
                     style="@style/StyleText"
                     />
             </android.support.design.widget.TextInputLayout>
@@ -124,7 +152,6 @@
             android:orientation="horizontal"
             >
             <ImageView
-                app:srcCompat="@drawable/ic_holiday_calendar"
                 tools:ignore="ContentDescription"
                 style="@style/StyleIconConfirm"
                 />
@@ -132,10 +159,7 @@
                 style="@style/StyleTextHintEditProfile"
                 >
                 <EditText
-                    android:ellipsize="end"
-                    android:hint="@string/contract_date"
-                    android:maxLines="1"
-                    bind:setInformationUser="@{viewModel.contractDate}"
+                    android:hint="@string/vehicle"
                     style="@style/StyleText"
                     />
             </android.support.design.widget.TextInputLayout>
@@ -148,7 +172,6 @@
             android:orientation="horizontal"
             >
             <ImageView
-                app:srcCompat="@drawable/ic_position_name"
                 tools:ignore="ContentDescription"
                 style="@style/StyleIconConfirm"
                 />
@@ -156,8 +179,7 @@
                 style="@style/StyleTextHintEditProfile"
                 >
                 <EditText
-                    android:hint="@string/position"
-                    bind:setInformationUser="@{viewModel.user.namePosition}"
+                    android:hint="@string/bank_info"
                     style="@style/StyleText"
                     />
             </android.support.design.widget.TextInputLayout>
@@ -170,8 +192,6 @@
             android:orientation="horizontal"
             >
             <ImageView
-                android:id="@+id/imageView"
-                app:srcCompat="@drawable/ic_staff_code"
                 tools:ignore="ContentDescription"
                 style="@style/StyleIconConfirm"
                 />
@@ -179,8 +199,7 @@
                 style="@style/StyleTextHintEditProfile"
                 >
                 <EditText
-                    android:hint="@string/individual_code"
-                    bind:setInformationUser="@{viewModel.user.individualCode}"
+                    android:hint="@string/distance_from_office"
                     style="@style/StyleText"
                     />
             </android.support.design.widget.TextInputLayout>
@@ -193,7 +212,6 @@
             android:orientation="horizontal"
             >
             <ImageView
-                app:srcCompat="@drawable/ic_star"
                 tools:ignore="ContentDescription"
                 style="@style/StyleIconConfirm"
                 />
@@ -201,10 +219,7 @@
                 style="@style/StyleTextHintEditProfile"
                 >
                 <EditText
-                    android:ellipsize="end"
-                    android:hint="@string/staff_type"
-                    android:maxLines="1"
-                    bind:setInformationUser="@{viewModel.user.nameStaffType}"
+                    android:hint="@string/home_phone"
                     style="@style/StyleText"
                     />
             </android.support.design.widget.TextInputLayout>
@@ -217,78 +232,57 @@
             android:orientation="horizontal"
             >
             <ImageView
-                app:srcCompat="@drawable/ic_branch"
                 tools:ignore="ContentDescription"
                 style="@style/StyleIconConfirm"
                 />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_24"
-                android:layout_marginStart="@dimen/dp_24"
-                android:orientation="vertical"
+            <android.support.design.widget.TextInputLayout
+                style="@style/StyleTextHintEditProfile"
                 >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/workspaces"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/sp_11"
+                <EditText
+                    android:hint="@string/number_of_child"
+                    style="@style/StyleText"
                     />
-                <android.support.v7.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="@dimen/dp_7"
-                    android:layout_marginTop="@dimen/dp_5"
-                    android:orientation="horizontal"
-                    app:layoutManager="LinearLayoutManager"
-                    app:recyclerAdapter="@{viewModel.branchAdapter}"
-                    />
-                <View
-                    style="@style/StyleViewProfile"
-                    />
-            </LinearLayout>
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_5"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             >
             <ImageView
-                app:srcCompat="@drawable/ic_group"
                 tools:ignore="ContentDescription"
                 style="@style/StyleIconConfirm"
                 />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_24"
-                android:layout_marginStart="@dimen/dp_24"
-                android:orientation="vertical"
+            <android.support.design.widget.TextInputLayout
+                style="@style/StyleTextHintEditProfile"
                 >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/group"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/sp_11"
+                <EditText
+                    android:hint="@string/license_plate"
+                    style="@style/StyleText"
                     />
-                <android.support.v7.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="@dimen/dp_7"
-                    android:layout_marginTop="@dimen/dp_5"
-                    android:orientation="horizontal"
-                    app:layoutManager="LinearLayoutManager"
-                    app:recyclerAdapter="@{viewModel.groupAdapter}"
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                tools:ignore="ContentDescription"
+                style="@style/StyleIconConfirm"
+                />
+            <android.support.design.widget.TextInputLayout
+                style="@style/StyleTextHintEditProfile"
+                >
+                <EditText
+                    android:hint="@string/account_id"
+                    style="@style/StyleText"
                     />
-                <View
-                    style="@style/StyleViewProfile"
-                    />
-            </LinearLayout>
+            </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
     </LinearLayout>
