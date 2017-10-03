@@ -49,6 +49,9 @@ public class IdentifyInfo extends BaseModel implements Parcelable {
         mCode = in.readString();
     }
 
+    IdentifyInfo() {
+    }
+
     public int getId() {
         return mId;
     }

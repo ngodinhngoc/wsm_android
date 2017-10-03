@@ -45,6 +45,7 @@ public class ProfileFragment extends BaseFragment {
         FragmentProfileBinding binding =
                 DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false);
         binding.setViewModel((ProfileViewModel) mViewModel);
+        initView(binding);
         return binding.getRoot();
     }
 
@@ -90,5 +91,14 @@ public class ProfileFragment extends BaseFragment {
 
     public interface UpdateAvatarListener {
         void onUpdateAvatar();
+    }
+
+    private void initView(final FragmentProfileBinding binding) {
+        binding.floatButtonUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.nestedScrollView.fullScroll(View.FOCUS_UP);
+            }
+        });
     }
 }

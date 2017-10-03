@@ -33,15 +33,17 @@ public class ProfileViewModel extends BaseObservable implements ProfileContract.
     private GroupAdapter mGroupAdapter;
     private User mUser;
     private boolean mIsLoadDataFirstTime;
+    private boolean mIsVisibleLayoutWorkingOther;
 
     private String mAvatar;
     private String mBirthday;
     private String mContractDate;
     private String mStartProbationDate;
     private String mEndProbationDate;
+    private String mDistanceFromOffice;
 
-    ProfileViewModel(Context context, ProfileContract.Presenter presenter,
-            Navigator navigator, BranchAdapter branchAdapter, GroupAdapter groupAdapter) {
+    ProfileViewModel(Context context, ProfileContract.Presenter presenter, Navigator navigator,
+            BranchAdapter branchAdapter, GroupAdapter groupAdapter) {
         mContext = context;
         mPresenter = presenter;
         mPresenter.setViewModel(this);
@@ -71,6 +73,8 @@ public class ProfileViewModel extends BaseObservable implements ProfileContract.
         mBranchAdapter.updateDataBranch(mUser.getBranches());
         mGroupAdapter.updateDataGroup(mUser.getGroups());
         mIsLoadDataFirstTime = false;
+
+        setDistanceFromOffice(String.valueOf(mUser.getAddress().getDistanceFromOffice()));
 
         setAvatar(mUser.getAvatar());
         setBirthday(mUser.getBirthday());
@@ -159,6 +163,26 @@ public class ProfileViewModel extends BaseObservable implements ProfileContract.
                 mContext.getString(R.string.format_date_mm_dd_yyyy));
     }
 
+    @Bindable
+    public boolean isVisibleLayoutWorkingOther() {
+        return mIsVisibleLayoutWorkingOther;
+    }
+
+    private void setVisibleLayoutWorkingOther(boolean visibleLayoutWorkingOther) {
+        mIsVisibleLayoutWorkingOther = visibleLayoutWorkingOther;
+        notifyPropertyChanged(BR.visibleLayoutWorkingOther);
+    }
+
+    @Bindable
+    public String getDistanceFromOffice() {
+        return mDistanceFromOffice + " " + mContext.getString(R.string.km);
+    }
+
+    private void setDistanceFromOffice(String distanceFromOffice) {
+        mDistanceFromOffice = distanceFromOffice;
+        notifyPropertyChanged(BR.distanceFromOffice);
+    }
+
     public BranchAdapter getBranchAdapter() {
         return mBranchAdapter;
     }
@@ -179,5 +203,9 @@ public class ProfileViewModel extends BaseObservable implements ProfileContract.
         Bundle bundle = new Bundle();
         bundle.putParcelable(Constant.EXTRA_USER, mUser);
         mNavigator.startActivity(ChangePasswordActivity.class, bundle);
+    }
+
+    public void onClickViewMore(View view) {
+        setVisibleLayoutWorkingOther(true);
     }
 }

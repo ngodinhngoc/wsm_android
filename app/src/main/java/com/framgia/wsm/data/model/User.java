@@ -386,6 +386,9 @@ public class User extends BaseModel implements Parcelable {
     }
 
     public IdentifyInfo getIdentifyInfo() {
+        if (mIdentifyInfo == null) {
+            return new IdentifyInfo();
+        }
         return mIdentifyInfo;
     }
 
@@ -394,6 +397,9 @@ public class User extends BaseModel implements Parcelable {
     }
 
     public GeneralInfo getGeneralInfo() {
+        if (mGeneralInfo == null) {
+            return new GeneralInfo();
+        }
         return mGeneralInfo;
     }
 
@@ -402,6 +408,9 @@ public class User extends BaseModel implements Parcelable {
     }
 
     public BankInfo getBankInfo() {
+        if (mBankInfo == null) {
+            return new BankInfo();
+        }
         return mBankInfo;
     }
 
@@ -410,6 +419,9 @@ public class User extends BaseModel implements Parcelable {
     }
 
     public Address getAddress() {
+        if (mAddress == null) {
+            return new Address();
+        }
         return mAddress;
     }
 

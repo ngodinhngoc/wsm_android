@@ -374,6 +374,7 @@
     <!-- Information Profile -->
     <string name="view_more">Xem Thêm</string>
     <string name="empty">Chưa có thông tin !</string>
+    <string name="km">km(s)</string>
     <string name="working_information">Thông tin công việc</string>
     <string name="other_information">Thông tin khác</string>
     <string name="name">Tên:</string>
