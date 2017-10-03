@@ -386,6 +386,7 @@
     <!-- Information Profile -->
     <string name="view_more">View More</string>
     <string name="empty">Empty !</string>
+    <string name="km">km(s)</string>
     <string name="working_information">Working Information</string>
     <string name="other_information">Other Information</string>
     <string name="name">Name:</string>

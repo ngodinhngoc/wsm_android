@@ -26,7 +26,7 @@ public class Address extends BaseModel implements Parcelable {
     private int mId;
     @Expose
     @SerializedName("distance_from_office")
-    private int mDistanceFromOffice;
+    private float mDistanceFromOffice;
     @Expose
     @SerializedName("place_of_birth")
     private String mPlaceOfBirth;
@@ -48,7 +48,7 @@ public class Address extends BaseModel implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(mId);
-        dest.writeInt(mDistanceFromOffice);
+        dest.writeFloat(mDistanceFromOffice);
         dest.writeString(mPlaceOfBirth);
         dest.writeString(mCurrentAddress);
         dest.writeString(mPermanentAddress);
@@ -59,6 +59,9 @@ public class Address extends BaseModel implements Parcelable {
         return 0;
     }
 
+    public Address() {
+    }
+
     public int getId() {
         return mId;
     }
@@ -67,11 +70,11 @@ public class Address extends BaseModel implements Parcelable {
         mId = id;
     }
 
-    public int getDistanceFromOffice() {
+    public float getDistanceFromOffice() {
         return mDistanceFromOffice;
     }
 
-    public void setDistanceFromOffice(int distanceFromOffice) {
+    public void setDistanceFromOffice(float distanceFromOffice) {
         mDistanceFromOffice = distanceFromOffice;
     }
 

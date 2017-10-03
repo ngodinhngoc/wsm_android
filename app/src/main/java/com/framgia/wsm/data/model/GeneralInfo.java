@@ -74,6 +74,9 @@ public class GeneralInfo extends BaseModel implements Parcelable {
         return 0;
     }
 
+    public GeneralInfo() {
+    }
+
     public int getId() {
         return mId;
     }

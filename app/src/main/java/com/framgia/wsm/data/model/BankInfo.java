@@ -59,6 +59,9 @@ public class BankInfo extends BaseModel implements Parcelable {
         return 0;
     }
 
+    public BankInfo() {
+    }
+
     public int getId() {
         return mId;
     }
