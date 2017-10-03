@@ -370,4 +370,12 @@
     <string name="approve">Chấp nhận</string>
     <string name="number_hour">Số giờ OT</string>
     <string name="no_network_connection">Không có kết nối mạng !</string>
+
+    <!-- Information Profile -->
+    <string name="name">Tên:</string>
+    <string name="nationality">Quốc tịch:</string>
+    <string name="email_">Email:</string>
+    <string name="gender_">Giới tính:</string>
+    <string name="birthday_">Ngày sinh:</string>
+
 </resources>

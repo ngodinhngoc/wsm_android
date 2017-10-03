@@ -38,7 +38,7 @@ public final class Constant {
     public static final int NO_GROUP_OR_BRANCH = 0;
     public static final String UPDATE_VERSION = "update_version";
     public static final String UNABLE_TO_RESOLVE_HOST =
-            "Unable to resolve host \"edev.framgia.vn\": No address " + "associated with hostname";
+            "Unable to resolve host \"wsm.framgia.vn\": No address " + "associated with hostname";
 
     private Constant() {
         // No-op

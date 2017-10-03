@@ -12,16 +12,16 @@
 
     </data>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@{viewModel.branchName}"
-            />
-    </LinearLayout>
+        android:layout_marginLeft="@dimen/dp_5"
+        android:layout_marginStart="@dimen/dp_5"
+        android:background="@drawable/border_button_red"
+        android:padding="@dimen/dp_5"
+        android:text="@{viewModel.branchName}"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/sp_12"
+        style="@style/StyleTextProfile"
+        />
 </layout>
