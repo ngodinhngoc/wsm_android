@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.framgia.wsm.R;
 import com.framgia.wsm.data.model.HolidayCalendarDate;
@@ -33,6 +34,7 @@ import com.framgia.wsm.screen.forgotpassword.ForgotPasswordViewModel;
 import com.framgia.wsm.screen.main.MainViewModel;
 import com.framgia.wsm.screen.requestoff.RequestOffViewModel;
 import com.framgia.wsm.utils.Constant;
+import com.framgia.wsm.utils.common.StringUtils;
 import com.framgia.wsm.widget.holidaycalendar.HolidayCalendarView;
 import com.framgia.wsm.widget.holidaycalendar.HolidayDateClickListener;
 import com.framgia.wsm.widget.timesheet.OnDayClickListener;
@@ -505,5 +507,14 @@ public final class BindingUtils {
         combinedChart.setData(data);
         combinedChart.setOnChartValueSelectedListener(onChartValueSelectedListener);
         combinedChart.invalidate();
+    }
+
+    @BindingAdapter("setInformationUser")
+    public static void setInformationUser(final TextView textView, String data) {
+        if (StringUtils.isNotBlank(data)) {
+            textView.setText(data);
+            return;
+        }
+        textView.setText(textView.getResources().getString(R.string.empty));
     }
 }
