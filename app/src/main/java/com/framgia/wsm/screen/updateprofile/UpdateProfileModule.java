@@ -1,8 +1,8 @@
 package com.framgia.wsm.screen.updateprofile;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import com.framgia.wsm.data.model.User;
 import com.framgia.wsm.data.source.UserRepository;
 import com.framgia.wsm.data.source.local.UserLocalDataSource;
@@ -25,9 +25,9 @@ import dagger.Provides;
 @Module
 public class UpdateProfileModule {
 
-    private Activity mActivity;
+    private AppCompatActivity mActivity;
 
-    public UpdateProfileModule(@NonNull Activity activity) {
+    public UpdateProfileModule(@NonNull AppCompatActivity activity) {
         this.mActivity = activity;
     }
 
@@ -35,10 +35,14 @@ public class UpdateProfileModule {
     @Provides
     public UpdateProfileContract.ViewModel provideViewModel(Context context, Navigator navigator,
             DialogManager dialogManager, UpdateProfileContract.Presenter presenter,
-            RequestPermissionManager requestPermissionManager) {
+            RequestPermissionManager requestPermissionManager,
+            UpdateProfileAdapter updateProfileAdapter) {
         User user = mActivity.getIntent().getParcelableExtra(Constant.EXTRA_USER);
-        return new UpdateProfileViewModel(context, user, navigator, dialogManager, presenter,
-                requestPermissionManager);
+        UpdateProfileViewModel updateProfileViewModel =
+                new UpdateProfileViewModel(context, user, navigator, dialogManager, presenter,
+                        requestPermissionManager);
+        updateProfileViewModel.setUpdateProfileAdapter(updateProfileAdapter);
+        return updateProfileViewModel;
     }
 
     @ActivityScope
@@ -77,5 +81,11 @@ public class UpdateProfileModule {
     @Provides
     RequestPermissionManager provideRequestPermissionManager() {
         return new RequestPermissionManager(mActivity);
+    }
+
+    @ActivityScope
+    @Provides
+    UpdateProfileAdapter provideUpdateProfileAdapter() {
+        return new UpdateProfileAdapter(mActivity, mActivity.getSupportFragmentManager());
     }
 }

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.net.Uri;
+import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
@@ -51,6 +52,7 @@ public class UpdateProfileViewModel extends BaseObservable
     private RequestPermissionManager mPermissionManager;
     private UpdateProfileRequest mUpdateProfileRequest;
     private User mUserLocal;
+    private UpdateProfileAdapter mUpdateProfileAdapter;
 
     UpdateProfileViewModel(Context context, User user, Navigator navigator,
             DialogManager dialogManager, UpdateProfileContract.Presenter presenter,
@@ -245,5 +247,25 @@ public class UpdateProfileViewModel extends BaseObservable
                 mContext.getString(R.string.format_date_mm_dd_yyyy),
                 DateTimeUtils.DATE_FORMAT_YYYY_MM_DD));
         mPresenter.updateProfile(mUpdateProfileRequest);
+    }
+
+    void setUpdateProfileAdapter(UpdateProfileAdapter updateProfileAdapter) {
+        mUpdateProfileAdapter = updateProfileAdapter;
+    }
+
+    public UpdateProfileAdapter getUpdateProfileAdapter() {
+        return mUpdateProfileAdapter;
+    }
+
+    @IntDef({
+            Tab.GENERAL, Tab.WORKING, Tab.CONTACT, Tab.RELATIVE, Tab.EDUCATION, Tab.OTHER
+    })
+    @interface Tab {
+        int GENERAL = 0;
+        int WORKING = 1;
+        int CONTACT = 2;
+        int RELATIVE = 3;
+        int EDUCATION = 4;
+        int OTHER = 5;
     }
 }
