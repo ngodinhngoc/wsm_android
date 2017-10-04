@@ -6,6 +6,8 @@ import android.databinding.Bindable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import com.framgia.wsm.BR;
 import com.framgia.wsm.BuildConfig;
 import com.framgia.wsm.R;
@@ -189,6 +191,10 @@ public class ProfileViewModel extends BaseObservable implements ProfileContract.
 
     public GroupAdapter getGroupAdapter() {
         return mGroupAdapter;
+    }
+
+    public Animation getAnimation() {
+        return AnimationUtils.loadAnimation(mContext, R.anim.slide_bottom_in);
     }
 
     public void onClickEditProfile(View view) {
