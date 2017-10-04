@@ -111,6 +111,9 @@ public class User extends BaseModel implements Parcelable {
     @Expose
     @SerializedName("address")
     private Address mAddress;
+    @Expose
+    @SerializedName("vehicle_info")
+    private VehicleInfo mVehicleInfo;
 
     public User() {
     }
@@ -142,6 +145,7 @@ public class User extends BaseModel implements Parcelable {
         mGeneralInfo = in.readParcelable(GeneralInfo.class.getClassLoader());
         mBankInfo = in.readParcelable(BankInfo.class.getClassLoader());
         mAddress = in.readParcelable(Address.class.getClassLoader());
+        mVehicleInfo = in.readParcelable(VehicleInfo.class.getClassLoader());
     }
 
     @Override
@@ -172,6 +176,7 @@ public class User extends BaseModel implements Parcelable {
         dest.writeParcelable(mGeneralInfo, flags);
         dest.writeParcelable(mBankInfo, flags);
         dest.writeParcelable(mAddress, flags);
+        dest.writeParcelable(mVehicleInfo, flags);
     }
 
     @Override
@@ -427,5 +432,16 @@ public class User extends BaseModel implements Parcelable {
 
     public void setAddress(Address address) {
         mAddress = address;
+    }
+
+    public VehicleInfo getVehicleInfo() {
+        if (mVehicleInfo == null) {
+            return new VehicleInfo();
+        }
+        return mVehicleInfo;
+    }
+
+    public void setVehicleInfo(VehicleInfo vehicleInfo) {
+        mVehicleInfo = vehicleInfo;
     }
 }

@@ -20,8 +20,10 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.framgia.wsm.R;
@@ -516,5 +518,16 @@ public final class BindingUtils {
             return;
         }
         textView.setText(textView.getResources().getString(R.string.empty));
+    }
+
+    @BindingAdapter({ "setVisible", "setAnimation" })
+    public static void setLayoutWorkingOther(final LinearLayout layoutWorkingOther,
+            boolean isVisible, Animation animation) {
+        if (!isVisible) {
+            layoutWorkingOther.setVisibility(View.GONE);
+            return;
+        }
+        layoutWorkingOther.startAnimation(animation);
+        layoutWorkingOther.setVisibility(View.VISIBLE);
     }
 }
