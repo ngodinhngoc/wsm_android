@@ -44,5 +44,6 @@
     <color name="color_orange">#ff875b</color>
     <color name="color_orange_yellow">#fda401</color>
     <color name="color_green_teal">#a2e796</color>
+    <color name="color_white_translate_light">#73F1F1F1</color>
 
 </resources>

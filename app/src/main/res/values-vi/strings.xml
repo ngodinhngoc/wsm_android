@@ -395,5 +395,10 @@
     <string name="number_of_child">Số con</string>
     <string name="license_plate">Biển số xe</string>
     <string name="account_id">Số tài khoản</string>
+    <string name="general">Chung</string>
+    <string name="working">Công việc</string>
+    <string name="contact">Liên hệ</string>
+    <string name="relative">Gia đình</string>
+    <string name="education">Giáo dục</string>
 
 </resources>
