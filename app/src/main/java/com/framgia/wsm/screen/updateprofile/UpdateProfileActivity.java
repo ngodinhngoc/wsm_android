@@ -28,15 +28,17 @@ public class UpdateProfileActivity extends BaseActivity {
     @Inject
     DialogManager mDialogManager;
 
+    private UpdateProfileComponent mUpdateProfileComponent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        DaggerUpdateProfileComponent.builder()
+        mUpdateProfileComponent = DaggerUpdateProfileComponent.builder()
                 .appComponent(((MainApplication) getApplication()).getAppComponent())
                 .updateProfileModule(new UpdateProfileModule(this))
-                .build()
-                .inject(this);
+                .build();
+        mUpdateProfileComponent.inject(this);
 
         ActivityUpdateProfileBinding binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_update_profile);
@@ -84,5 +86,9 @@ public class UpdateProfileActivity extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(UnauthorizedEvent event) {
         mDialogManager.showDialogUnauthorized();
+    }
+
+    public UpdateProfileComponent getUpdateProfileComponent() {
+        return mUpdateProfileComponent;
     }
 }
