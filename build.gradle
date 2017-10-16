@@ -40,8 +40,8 @@ ext {
   targetSdkVersion = 25
 
   // Version code & name
-  versionCode = 4
-  versionName = '1.0.2'
+  versionCode = 5
+  versionName = '1.1'
   versionCodeRelease = 1
-  versionNameRelease = '1.0.2'
+  versionNameRelease = '1.1'
 }
