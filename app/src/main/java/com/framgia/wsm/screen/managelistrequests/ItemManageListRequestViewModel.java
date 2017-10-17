@@ -318,17 +318,15 @@ public class ItemManageListRequestViewModel extends BaseObservable {
 
     public boolean isVisibleCheckbox() {
         if (mLeaveRequest != null) {
-            return mLeaveRequest.isCanApproveReject() && StatusCode.REJECT_CODE.equals(
-                    mLeaveRequest.getStatus()) || StatusCode.PENDING_CODE.equals(
-                    mLeaveRequest.getStatus());
+            return StatusCode.PENDING_CODE.equals(mLeaveRequest.getStatus())
+                    && mLeaveRequest.isCanApproveReject();
         }
         if (mRequestOverTime != null) {
-            return mRequestOverTime.isCanApproveReject() && StatusCode.REJECT_CODE.equals(
-                    mRequestOverTime.getStatus()) || StatusCode.PENDING_CODE.equals(
-                    mRequestOverTime.getStatus());
+            return StatusCode.PENDING_CODE.equals(mRequestOverTime.getStatus())
+                    && mRequestOverTime.isCanApproveReject();
         }
-        return mRequestOff.isCanApproveReject() && StatusCode.REJECT_CODE.equals(
-                mRequestOff.getStatus()) || StatusCode.PENDING_CODE.equals(mRequestOff.getStatus());
+        return StatusCode.PENDING_CODE.equals(mRequestOff.getStatus())
+                && mRequestOff.isCanApproveReject();
     }
 
     @Bindable

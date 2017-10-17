@@ -785,8 +785,7 @@ public class ManageListRequestsViewModel extends BaseObservable
     }
 
     private boolean requestCanSelected(String status, boolean isCanApprove) {
-        return StatusCode.PENDING_CODE.equals(status)
-                || StatusCode.REJECT_CODE.equals(status) && isCanApprove;
+        return StatusCode.PENDING_CODE.equals(status) && isCanApprove;
     }
 
     public void onSelectAll(View view) {
