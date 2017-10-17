@@ -39,6 +39,7 @@ public final class Constant {
     public static final String UPDATE_VERSION = "update_version";
     public static final String UNABLE_TO_RESOLVE_HOST =
             "Unable to resolve host \"wsm.framgia.vn\": No address " + "associated with hostname";
+    public static final String DEFAULT_COLOR = "FFFFFF";
 
     private Constant() {
         // No-op

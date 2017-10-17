@@ -38,6 +38,12 @@ public class UserTimeSheet {
     @Expose
     @SerializedName("end_date")
     private String mEndDate;
+    @Expose
+    @SerializedName("total_number_time_fine_round")
+    private float mTotalNumberFineByBlock;
+    @Expose
+    @SerializedName("total_number_time_fine")
+    private float mTotalNumberRealPenalTime;
 
     public String getMonth() {
         return mMonth;
@@ -109,5 +115,21 @@ public class UserTimeSheet {
                     DateTimeUtils.DATE_FORMAT_YYYY_MM_DD_2).getDate() - getCutOffDate();
         }
         return 0;
+    }
+
+    public float getTotalNumberFineByBlock() {
+        return mTotalNumberFineByBlock;
+    }
+
+    public void setTotalNumberFineByBlock(float totalNumberFineByBlock) {
+        mTotalNumberFineByBlock = totalNumberFineByBlock;
+    }
+
+    public float getTotalNumberRealPenalTime() {
+        return mTotalNumberRealPenalTime;
+    }
+
+    public void setTotalNumberRealPenalTime(float totalNumberRealPenalTime) {
+        mTotalNumberRealPenalTime = totalNumberRealPenalTime;
     }
 }
