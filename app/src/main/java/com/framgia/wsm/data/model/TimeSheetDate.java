@@ -1,5 +1,6 @@
 package com.framgia.wsm.data.model;
 
+import com.framgia.wsm.utils.Constant;
 import com.framgia.wsm.utils.common.DateTimeUtils;
 import com.framgia.wsm.utils.common.StringUtils;
 import com.google.gson.annotations.Expose;
@@ -166,6 +167,9 @@ public class TimeSheetDate extends BaseModel {
     }
 
     public String getColorSpecialDate() {
+        if (StringUtils.isBlank(mColorSpecialDate)) {
+            return Constant.DEFAULT_COLOR;
+        }
         return mColorSpecialDate;
     }
 

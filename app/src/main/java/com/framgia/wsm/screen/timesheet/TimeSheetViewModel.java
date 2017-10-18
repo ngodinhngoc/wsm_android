@@ -1,5 +1,6 @@
 package com.framgia.wsm.screen.timesheet;
 
+import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import com.android.databinding.library.baseAdapters.BR;
+import com.framgia.wsm.R;
 import com.framgia.wsm.data.model.TimeSheetDate;
 import com.framgia.wsm.data.model.User;
 import com.framgia.wsm.data.model.UserTimeSheet;
@@ -33,6 +35,7 @@ import static com.framgia.wsm.utils.Constant.TimeConst.ONE_MONTH;
 public class TimeSheetViewModel extends BaseObservable implements TimeSheetContract.ViewModel {
     private static final String TAG = "TimeSheetViewModel";
 
+    private Context mContext;
     private TimeSheetContract.Presenter mPresenter;
     private List<TimeSheetDate> mTimeSheetDates;
     private DialogManager mDialogManager;
@@ -50,8 +53,9 @@ public class TimeSheetViewModel extends BaseObservable implements TimeSheetContr
     private int mCutOffDate;
     private int totalDateCompensationInMonth;
 
-    public TimeSheetViewModel(TimeSheetContract.Presenter presenter, Navigator navigator,
-            DialogManager dialogManager) {
+    public TimeSheetViewModel(Context context, TimeSheetContract.Presenter presenter,
+            Navigator navigator, DialogManager dialogManager) {
+        mContext = context;
         mPresenter = presenter;
         mPresenter.setViewModel(this);
         mTimeSheetDates = new ArrayList<>();
@@ -192,6 +196,18 @@ public class TimeSheetViewModel extends BaseObservable implements TimeSheetContr
         return String.valueOf(mUserTimeSheet.getNumberOverTime());
     }
 
+    @Bindable
+    public String getTotalTimeOfFineByBlock() {
+        return String.format(mContext.getString(R.string.minute),
+                String.valueOf(mUserTimeSheet.getTotalNumberFineByBlock()));
+    }
+
+    @Bindable
+    public String getTotalRealPenalTime() {
+        return String.format(mContext.getString(R.string.minute),
+                String.valueOf(mUserTimeSheet.getTotalNumberRealPenalTime()));
+    }
+
     private void setUserTimeSheet(UserTimeSheet userTimeSheet) {
         mUserTimeSheet = userTimeSheet;
         notifyPropertyChanged(BR.totalDayOff);
@@ -199,6 +215,8 @@ public class TimeSheetViewModel extends BaseObservable implements TimeSheetContr
         notifyPropertyChanged(BR.numberDayOffHaveSalary);
         notifyPropertyChanged(BR.numberDayOffNoSalary);
         notifyPropertyChanged(BR.numberOverTime);
+        notifyPropertyChanged(BR.totalTimeOfFineByBlock);
+        notifyPropertyChanged(BR.totalRealPenalTime);
     }
 
     @Bindable

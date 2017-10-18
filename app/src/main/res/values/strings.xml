@@ -412,5 +412,8 @@
     <string name="contact">Contact</string>
     <string name="relative">Relative</string>
     <string name="education">Education</string>
+    <string name="total_of_fine_by_block">Total of fine by block</string>
+    <string name="total_real_penal_time">Total real penal time</string>
+    <string name="minute">%s (m)</string>
 
 </resources>
