@@ -106,10 +106,10 @@
                         >
 
                         <EditText
+                            android:id="@+id/testss"
                             android:hint="@string/position_name"
                             android:maxLength="100"
                             android:maxLines="1"
-                            android:text="@={viewModel.requestOff.position}"
                             style="@style/StyleEditableText"
                             />
                     </android.support.design.widget.TextInputLayout>

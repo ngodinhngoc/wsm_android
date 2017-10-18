@@ -12,6 +12,7 @@ import android.os.Build;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.text.Spanned;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -105,6 +106,13 @@ public class DialogManagerImpl implements DialogManager {
     @Override
     public void dialogError(String content) {
         new MaterialDialog.Builder(mContext).content(content)
+                .positiveText(android.R.string.ok)
+                .show();
+    }
+
+    @Override
+    public void dialogError(Spanned spanned) {
+        new MaterialDialog.Builder(mContext).content(spanned)
                 .positiveText(android.R.string.ok)
                 .show();
     }

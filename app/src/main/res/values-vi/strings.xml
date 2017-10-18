@@ -225,8 +225,8 @@
     <string name="the_number_of_days_allowed">Số ngày xin nghỉ không được để trống!</string>
     <string name="the_field_required_can_not_be_blank">Trường bắt buộc không được để trống!</string>
     <string name="reason_can_not_empty">Lý do không được để trống!</string>
-    <string name="datetime_have_salary_can_not_empty">Ngày nghỉ có lương không được để trống!</string>
-    <string name="datetime_no_salary_can_not_empty">Ngày nghỉ không lương không được để trống!</string>
+    <string name="datetime_have_salary_can_not_empty"><![CDATA[ Ngày nghỉ <b>có lương<b> không được để trống! ]]></string>
+    <string name="datetime_no_salary_can_not_empty"><![CDATA[ Ngày nghỉ <b>không lương<b> không được để trống!]]></string>
     <string name="time_must_be_a_working_date">Thời gian phải là một ngày làm việc!</string>
     <string name="annual_leave_error">Nghỉ phép thường niên không được quá %s ngày!</string>
     <string name="leave_for_marriage_error">Nghỉ kết hôn không được quá %s ngày!</string>

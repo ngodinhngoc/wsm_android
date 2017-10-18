@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringDef;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
@@ -1379,6 +1381,10 @@ public class RequestOffViewModel extends BaseRequestOff
         mDialogManager.dialogError(errorMessage);
     }
 
+    private void showErrorDialog(Spanned errorMessage) {
+        mDialogManager.dialogError(errorMessage);
+    }
+
     public void onClickStartDate(View view) {
         mFlagDate = FLAG_START_DATE;
         if (StringUtils.isNotBlank(getStartDate())) {
@@ -1465,12 +1471,14 @@ public class RequestOffViewModel extends BaseRequestOff
 
         if (getSumDateOffHaveSalary() > 0) {
             if (StringUtils.isBlank(mEndDateHaveSalary)) {
-                showErrorDialog(mContext.getString(R.string.datetime_have_salary_can_not_empty));
+                showErrorDialog(Html.fromHtml(
+                        mContext.getString(R.string.datetime_have_salary_can_not_empty)));
                 return;
             }
             if (StringUtils.isNotBlank(mStartDateNoSalary) && StringUtils.isBlank(
                     mEndDateNoSalary)) {
-                showErrorDialog(mContext.getString(R.string.datetime_no_salary_can_not_empty));
+                showErrorDialog(Html.fromHtml(
+                        mContext.getString(R.string.datetime_no_salary_can_not_empty)));
                 return;
             }
             mNavigator.startActivityForResult(ConfirmRequestOffActivity.class, bundle,
@@ -1478,16 +1486,16 @@ public class RequestOffViewModel extends BaseRequestOff
         } else {
             if (StringUtils.isNotBlank(mStartDateHaveSalary)) {
                 if (StringUtils.isBlank(mEndDateHaveSalary)) {
-                    showErrorDialog(
-                            mContext.getString(R.string.datetime_have_salary_can_not_empty));
+                    showErrorDialog(Html.fromHtml(
+                            mContext.getString(R.string.datetime_have_salary_can_not_empty)));
                     return;
                 }
                 showErrorDialog(mContext.getString(R.string.the_number_of_days_allowed));
             } else if (StringUtils.isBlank(mEndDateHaveSalary)) {
                 if (StringUtils.isBlank(mEndDateNoSalary)) {
                     if (StringUtils.isNotBlank(mStartDateNoSalary)) {
-                        showErrorDialog(
-                                mContext.getString(R.string.datetime_no_salary_can_not_empty));
+                        showErrorDialog(Html.fromHtml(
+                                mContext.getString(R.string.datetime_no_salary_can_not_empty)));
                         return;
                     }
                     showErrorDialog(

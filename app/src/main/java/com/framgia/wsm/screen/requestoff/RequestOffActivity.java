@@ -10,6 +10,7 @@ import com.framgia.wsm.data.event.UpdateRemainingDayOff;
 import com.framgia.wsm.databinding.ActivityRequestOffBinding;
 import com.framgia.wsm.screen.BaseActivity;
 import com.framgia.wsm.utils.Constant;
+import com.framgia.wsm.utils.navigator.Navigator;
 import com.framgia.wsm.widget.dialog.DialogManager;
 import javax.inject.Inject;
 import org.greenrobot.eventbus.Subscribe;
@@ -22,9 +23,10 @@ public class RequestOffActivity extends BaseActivity {
 
     @Inject
     RequestOffContract.ViewModel mViewModel;
-
     @Inject
     DialogManager mDialogManager;
+    @Inject
+    Navigator mNavigator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,11 @@ public class RequestOffActivity extends BaseActivity {
     protected void onStop() {
         mViewModel.onStop();
         super.onStop();
+    }
+
+    @Override
+    public void onBackPressed() {
+        mNavigator.finishActivity();
     }
 
     @Override
