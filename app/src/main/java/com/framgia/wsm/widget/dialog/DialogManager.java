@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.DrawableRes;
+import android.text.Spanned;
 import com.framgia.wsm.data.source.remote.api.error.BaseException;
 import com.fstyle.library.MaterialDialog;
 import java.util.Calendar;
@@ -31,6 +32,8 @@ public interface DialogManager {
     void dialogError(BaseException e, MaterialDialog.SingleButtonCallback positiveButtonListener);
 
     void dialogError(String content);
+
+    void dialogError(Spanned spanned);
 
     /**
      * <h1>BasicWithoutTitle Dialog</h1>

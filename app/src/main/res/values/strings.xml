@@ -240,8 +240,8 @@
     <string name="the_number_of_days_allowed">The number of days allowed for vacations may not be left blank!</string>
     <string name="the_field_required_can_not_be_blank">The field required can not be blank!</string>
     <string name="reason_can_not_empty">Reason can not be blank!</string>
-    <string name="datetime_have_salary_can_not_empty">Date time have salary can not be blank!</string>
-    <string name="datetime_no_salary_can_not_empty">Date time no salary can not be blank!</string>
+    <string name="datetime_have_salary_can_not_empty"><![CDATA[Date time<b> have salary</b> can not be blank! ]]></string>
+    <string name="datetime_no_salary_can_not_empty"> <![CDATA[Date time<b> no salary</b> can not be blank! ]]></string>
     <string name="time_must_be_a_working_date">Time must be a working day!</string>
     <string name="annual_leave_error">Annual leave is not greater than %s days!</string>
     <string name="leave_for_marriage_error">Leave for marriage is not greater than %s days!</string>

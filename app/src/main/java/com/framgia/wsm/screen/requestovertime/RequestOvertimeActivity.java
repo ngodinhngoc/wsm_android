@@ -9,6 +9,7 @@ import com.framgia.wsm.data.event.UnauthorizedEvent;
 import com.framgia.wsm.databinding.ActivityRequestOvertimeBinding;
 import com.framgia.wsm.screen.BaseActivity;
 import com.framgia.wsm.utils.Constant;
+import com.framgia.wsm.utils.navigator.Navigator;
 import com.framgia.wsm.widget.dialog.DialogManager;
 import javax.inject.Inject;
 import org.greenrobot.eventbus.Subscribe;
@@ -21,9 +22,10 @@ public class RequestOvertimeActivity extends BaseActivity {
 
     @Inject
     RequestOvertimeContract.ViewModel mViewModel;
-
     @Inject
     DialogManager mDialogManager;
+    @Inject
+    Navigator mNavigator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,11 @@ public class RequestOvertimeActivity extends BaseActivity {
     protected void onStop() {
         mViewModel.onStop();
         super.onStop();
+    }
+
+    @Override
+    public void onBackPressed() {
+        mNavigator.finishActivity();
     }
 
     @Override
