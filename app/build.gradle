@@ -8,35 +8,36 @@ apply from: '../checkci.gradle'
 
 def APP_ID = "com.framgia.wsm"
 
-buildscript {
-    repositories {
-        maven { url 'https://maven.fabric.io/public' }
-    }
-
-    dependencies {
-        classpath 'io.fabric.tools:gradle:1.+'
-    }
-}
-
-repositories {
-    maven { url 'https://maven.fabric.io/public' }
-}
-
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
+
+    flavorDimensions "default"
 
     defaultConfig {
         applicationId "${APP_ID}"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode build_versions.versionCode
+        versionName build_versions.versionName
 
         vectorDrawables.useSupportLibrary = true
 
         testApplicationId "${APP_ID + ".test"}"
         testInstrumentationRunner "${APP_ID + ".test.Instrumentation"}"
+    }
+
+    productFlavors {
+        dev {
+            manifestPlaceholders = [applicationName: "WSM-DEV"]
+        }
+        stg {
+//            applicationIdSuffix = ".stg"
+            manifestPlaceholders = [applicationName: "WSM-STG"]
+        }
+        prd {
+            manifestPlaceholders = [applicationName: "@string/app_name"]
+        }
     }
 
     sourceSets {
@@ -73,23 +74,26 @@ android {
 
     buildTypes {
         debug {
-            versionNameSuffix = "debug"
             ext.betaDistributionReleaseNotesFilePath = "release_notes.txt"
             ext.betaDistributionGroupAliases = "QAFR"
             ext.betaDistributionNotifications = true
+
+            applicationVariants.all { variant -> appendVersionNameVersionCode(variant) }
         }
         release {
             shrinkResources true
             minifyEnabled true
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            applicationVariants.all { variant -> appendVersionNameVersionCode(variant) }
         }
     }
 
     applicationVariants.all { variant ->
         def BASE_URL
         if (variant.buildType.isDebuggable()) {
-            BASE_URL = "http://edev.framgia.vn"
+            BASE_URL = "https://edev.framgia.vn"
         } else {
             BASE_URL = "https://wsm.framgia.vn"
         }
@@ -97,50 +101,95 @@ android {
     }
 
     dexOptions {
-        if(System.getenv()["CIRCLECI"] as boolean) {
+        if (System.getenv()["CIRCLECI"] as boolean) {
             javaMaxHeapSize "2048M"
             preDexLibraries false
         }
     }
 }
 
+@SuppressWarnings("GroovyAssignabilityCheck")
+def appendVersionNameVersionCode(variant) {
+    variant.outputs.all { output ->
+        def applicationId = variant.mergedFlavor.applicationId + (variant.buildType.applicationIdSuffix ==
+                null ? "" : variant.buildType.applicationIdSuffix)
+        if (output.zipAlign) {
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def time = new Date().format("dd-MM-yyyy", TimeZone.getTimeZone("UTC"))
+                def fileName = outputFile.name.replace("app",
+                        "${applicationId}_v${variant.versionName}_${variant.versionCode}_${time}")
+                outputFileName = fileName
+            }
+        }
+    }
+}
+
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    // Support libraries
+    implementation "com.android.support:appcompat-v7:$versions.support"
+    implementation "com.android.support:design:$versions.support"
+    implementation "com.android.support:cardview-v7:$versions.support"
+    implementation "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
+    implementation "com.github.daolq3012:MaterialDialog:$versions.material_dialog"
 
-    Map<String, String> dependencies = rootProject.ext.dependencies;
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
+    implementation "io.reactivex.rxjava2:rxjava:$versions.rxjava2"
 
-    compile dependencies.supportDesign
-    compile dependencies.constraintLayout
-    compile dependencies.dialog
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$versions.retrofitLogger"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+    implementation "com.squareup.retrofit2:retrofit-mock:$versions.retrofit"
 
-    compile dependencies.rxJava
-    compile dependencies.rxAndroid
+    // Dagger
+    implementation "com.google.dagger:dagger:$versions.dagger"
+    implementation "com.google.dagger:dagger-android:$versions.dagger"
+    implementation "com.google.dagger:dagger-android-support:$versions.dagger"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$versions.dagger"
+    annotationProcessor "com.google.dagger:dagger-compiler:$versions.dagger"
 
-    compile dependencies.retrofit2
-    compile dependencies.retrofit2Adapter
-    compile dependencies.retrofitGson
-    compile dependencies.loggingInterceptor
-    compile dependencies.fab
-    compile dependencies.cardView
-    compile dependencies.glide
-    compile dependencies.fcm
-    compile dependencies.eventBus
-    compile dependencies.toastCustom
-    compile dependencies.MPAndroidChart
+    // Other
+    implementation "com.google.firebase:firebase-messaging:$versions.firebase"
+    implementation "com.github.clans:fab:$versions.fab_button"
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
+    implementation "org.greenrobot:eventbus:$versions.eventbus"
+    implementation "com.github.GrenderG:Toasty:$versions.toast_custom"
+    implementation "com.github.PhilJay:MPAndroidChart:$versions.mpchart"
 
-    annotationProcessor dependencies.dagger2Compile
-    compile dependencies.dagger2
-    provided dependencies.annotation
+    // Dependencies for local unit tests
+    androidTestCompile "junit:junit:$versions.junit"
+    androidTestCompile "org.hamcrest:hamcrest-all:$versions.hamcrest"
+    androidTestCompile "org.mockito:mockito-all:$versions.mockito_all"
 
-    testCompile dependencies.junit
-    testCompile dependencies.mockito
+    // Resolve conflicts between main and local unit tests
+    androidTestCompile "com.android.support:support-annotations:$versions.support"
+    androidTestCompile "com.android.support:support-core-utils:$versions.support"
 
-    androidTestCompile 'info.cukes:cucumber-android:1.2.0@jar'
-    androidTestCompile 'info.cukes:cucumber-picocontainer:1.2.0'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+    // Android Testing Support Library's runner and rules
+    androidTestCompile "com.android.support.test:runner:$versions.atsl_runner"
+    androidTestCompile "com.android.support.test:rules:$versions.atsl_runner"
+
+    // Dependencies for Android unit tests
+    androidTestCompile "junit:junit:$versions.junit"
+    androidTestCompile "org.mockito:mockito-core:$versions.mockito", { exclude group: 'net.bytebuddy' }
+    androidTestCompile "com.linkedin.dexmaker:dexmaker-mockito:$versions.dexmaker"
+
+    // Espresso UI Testing
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$versions.espresso"
+    androidTestCompile "com.android.support.test.espresso:espresso-contrib:$versions.espresso"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:$versions.espresso"
+    androidTestCompile "info.cukes:cucumber-android:$versions.cucumber@jar"
+    androidTestCompile "info.cukes:cucumber-picocontainer:$versions.cucumber"
+
+    // Resolve conflicts between main and test APK:
+    androidTestCompile "com.android.support:support-annotations:$versions.support"
+    androidTestCompile "com.android.support:appcompat-v7:$versions.support"
+    androidTestCompile "com.android.support:design:$versions.support"
+
+    compile("com.crashlytics.sdk.android:crashlytics:$versions.crashlytics@aar") {
         transitive = true
     }
 }
