@@ -173,7 +173,7 @@
 
 # Dagger ProGuard rules.
 # https://github.com/square/dagger
-
+-dontwarn com.google.errorprone.annotations.*
 -dontwarn dagger.internal.codegen.**
 -keepclassmembers,allowobfuscation class * {
     @javax.inject.* *;
