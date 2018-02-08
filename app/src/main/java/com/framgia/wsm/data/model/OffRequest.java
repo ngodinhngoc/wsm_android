@@ -118,6 +118,10 @@ public class OffRequest extends BaseModel implements Parcelable {
     @Expose
     @SerializedName("can_approve_reject_request")
     private boolean mIsCanApproveReject;
+    @Expose
+    @SerializedName("replacement_id")
+    private Integer mReplacementId;
+    private String  mReplacementName;
     private boolean mIsChecked;
 
     public OffRequest() {
@@ -166,6 +170,12 @@ public class OffRequest extends BaseModel implements Parcelable {
                 in.createTypedArrayList(RequestDayOffTypesAttribute.CREATOR);
         mUser = in.readParcelable(User.class.getClassLoader());
         mIsCanApproveReject = in.readByte() != 0;
+        if (in.readByte() == 0) {
+            mReplacementId = null;
+        } else {
+            mReplacementId = in.readInt();
+        }
+        mReplacementName = in.readString();
         mIsChecked = in.readByte() != 0;
     }
 
@@ -211,6 +221,13 @@ public class OffRequest extends BaseModel implements Parcelable {
         dest.writeTypedList(mRequestDayOffTypesAttributes);
         dest.writeParcelable(mUser, flags);
         dest.writeByte((byte) (mIsCanApproveReject ? 1 : 0));
+        if (mReplacementId == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(mReplacementId);
+        }
+        dest.writeString(mReplacementName);
         dest.writeByte((byte) (mIsChecked ? 1 : 0));
     }
 
@@ -499,6 +516,22 @@ public class OffRequest extends BaseModel implements Parcelable {
 
     public void setCanApproveReject(boolean canApproveReject) {
         mIsCanApproveReject = canApproveReject;
+    }
+
+    public Integer getReplacementId() {
+        return mReplacementId;
+    }
+
+    public void setReplacementId(Integer replacementId) {
+        mReplacementId = replacementId;
+    }
+
+    public String getReplacementName() {
+        return mReplacementName;
+    }
+
+    public void setReplacementName(String replacementName) {
+        mReplacementName = replacementName;
     }
 
     public boolean isChecked() {

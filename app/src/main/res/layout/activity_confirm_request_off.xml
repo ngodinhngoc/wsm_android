@@ -793,6 +793,41 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:visibility="@{viewModel.isHaveReplacement ? View.VISIBLE: View.GONE}"
+                        android:orientation="horizontal"
+                        >
+                        <ImageView
+                            app:srcCompat="@drawable/ic_placeholder_user"
+                            tools:ignore="ContentDescription"
+                            style="@style/StyleIconConfirm"
+                            />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_20"
+                            android:layout_marginStart="@dimen/dp_20"
+                            android:orientation="vertical"
+                            >
+                            <TextView
+                                android:text="@string/replacement"
+                                style="@style/StyleTitleConfirm"
+                                />
+                            <TextView
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="@{viewModel.requestOff.replacementName}"
+                                style="@style/StyleTextConfirm"
+                                />
+                            <View
+                                style="@style/StyleViewConfirm"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/dp_30"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"

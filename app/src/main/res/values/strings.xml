@@ -415,5 +415,6 @@
     <string name="total_of_fine_by_block">Total of fine by block</string>
     <string name="total_real_penal_time">Total real penal time</string>
     <string name="minute">%s (m)</string>
+    <string name="replacement">Replacement</string>
 
 </resources>

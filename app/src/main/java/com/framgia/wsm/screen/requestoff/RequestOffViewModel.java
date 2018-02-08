@@ -58,7 +58,6 @@ public class RequestOffViewModel extends BaseRequestOff
     private Context mContext;
     private RequestOffContract.Presenter mPresenter;
     private DialogManager mDialogManager;
-    private Calendar mCalendar;
     private OffRequest mRequestOff;
     private Navigator mNavigator;
     private User mUser;
@@ -116,7 +115,7 @@ public class RequestOffViewModel extends BaseRequestOff
     private String mMiscarriageLeaveRemaining;
     private String mMaternityLeaveRemaining;
     private String mWifeLaborLeaveRemaining;
-
+    
     RequestOffViewModel(Context context, RequestOffContract.Presenter presenter,
             DialogManager dialogManager, Navigator navigator, OffRequest requestOff,
             int actionType) {
@@ -126,7 +125,6 @@ public class RequestOffViewModel extends BaseRequestOff
         mDialogManager = dialogManager;
         mNavigator = navigator;
         mPresenter.getUser();
-        mCalendar = Calendar.getInstance();
         mActionType = actionType;
         if (mActionType == ActionType.ACTION_CREATE) {
             mDialogManager.dialogDatePicker(this, Calendar.getInstance());
@@ -1418,6 +1416,14 @@ public class RequestOffViewModel extends BaseRequestOff
         } else {
             showErrorDialog(mContext.getString(R.string.you_have_to_choose_start_date));
         }
+    }
+
+    public void onClickReplacement(View view) {
+        // TODO: 2/8/18 remind set replacement id and replacement name
+        // TODO: 2/8/18 delete after finish logic for this feature
+        mRequestOff.setReplacementId(0);
+        mRequestOff.setReplacementName("Le Nha Minh");
+        notifyPropertyChanged(BR.requestOff);
     }
 
     private void validateEndDate(String endDate) {

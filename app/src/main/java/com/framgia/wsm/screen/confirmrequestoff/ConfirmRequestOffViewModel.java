@@ -23,6 +23,7 @@ import com.framgia.wsm.utils.RequestType;
 import com.framgia.wsm.utils.StatusCode;
 import com.framgia.wsm.utils.TypeToast;
 import com.framgia.wsm.utils.common.DateTimeUtils;
+import com.framgia.wsm.utils.common.StringUtils;
 import com.framgia.wsm.utils.navigator.Navigator;
 import com.framgia.wsm.widget.dialog.DialogManager;
 import com.fstyle.library.DialogAction;
@@ -520,6 +521,11 @@ public class ConfirmRequestOffViewModel extends BaseObservable
     private void setWifeLaborLeaveRemaining(String wifeLaborLeaveRemaining) {
         mWifeLaborLeaveRemaining = wifeLaborLeaveRemaining;
         notifyPropertyChanged(BR.wifeLaborLeaveRemaining);
+    }
+
+    @Bindable
+    public boolean isHaveReplacement() {
+        return StringUtils.isNotBlank(mOffRequest.getReplacementName());
     }
 
     public boolean isDetail() {
