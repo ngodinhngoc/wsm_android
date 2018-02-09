@@ -299,7 +299,10 @@ public class RequestOffViewModel extends BaseRequestOff
         } else {
             setBranchAndGroupWhenEdit(mUser);
         }
-        mPresenter.getListReplacement(mUser.getSetting().getGroupDefault());
+        Group group = mUser.getGroups().get(0);
+        if (group != null) {
+            mPresenter.getListReplacement(group.getGroupId());
+        }
     }
 
     @Override
@@ -1434,7 +1437,7 @@ public class RequestOffViewModel extends BaseRequestOff
         for (User user : mListUserReplacement) {
             userNames.add(user.getName());
         }
-        mDialogManager.dialogListSingleChoice("ABC",
+        mDialogManager.dialogListSingleChoice(mContext.getString(R.string.replacement),
                 userNames.toArray(new String[userNames.size()]), mCurrentReplacementPosition,
                 new MaterialDialog.ListCallbackSingleChoice() {
                     @Override
@@ -1444,7 +1447,7 @@ public class RequestOffViewModel extends BaseRequestOff
                             mRequestOff.setReplacementName(null);
                             mRequestOff.setReplacementId(null);
                         } else {
-                            User user = mListUserReplacement.get(i);
+                            User user = mListUserReplacement.get(i - 1);
                             mRequestOff.setReplacementName(user.getName());
                             mRequestOff.setReplacementId(user.getId());
                         }
