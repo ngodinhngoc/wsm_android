@@ -22,6 +22,7 @@ import com.framgia.wsm.data.model.OffRequest;
 import com.framgia.wsm.data.model.OffType;
 import com.framgia.wsm.data.model.User;
 import com.framgia.wsm.data.source.remote.api.error.BaseException;
+import com.framgia.wsm.data.source.remote.api.response.BaseResponse;
 import com.framgia.wsm.screen.BaseRequestOff;
 import com.framgia.wsm.screen.confirmrequestoff.ConfirmRequestOffActivity;
 import com.framgia.wsm.utils.ActionType;
@@ -65,6 +66,7 @@ public class RequestOffViewModel extends BaseRequestOff
 
     private int mCurrentBranchPosition;
     private int mCurrentGroupPosition;
+    private int mCurrentReplacementPosition;
 
     private int mFlagDate;
     private int mFlagDateSession;
@@ -115,7 +117,8 @@ public class RequestOffViewModel extends BaseRequestOff
     private String mMiscarriageLeaveRemaining;
     private String mMaternityLeaveRemaining;
     private String mWifeLaborLeaveRemaining;
-    
+    private List<User> mListUserReplacement = new ArrayList<>();
+
     RequestOffViewModel(Context context, RequestOffContract.Presenter presenter,
             DialogManager dialogManager, Navigator navigator, OffRequest requestOff,
             int actionType) {
@@ -293,9 +296,10 @@ public class RequestOffViewModel extends BaseRequestOff
             } else {
                 setGroupDefault(mUser, groupIdDefault);
             }
-            return;
+        } else {
+            setBranchAndGroupWhenEdit(mUser);
         }
-        setBranchAndGroupWhenEdit(mUser);
+        mPresenter.getListReplacement(mUser.getSetting().getGroupDefault());
     }
 
     @Override
@@ -307,6 +311,12 @@ public class RequestOffViewModel extends BaseRequestOff
     public void onInputReasonError(String reason) {
         mReasonError = reason;
         notifyPropertyChanged(BR.reasonError);
+    }
+
+    @Override
+    public void onGetUserReplacementSuccess(List<User> users) {
+        mListUserReplacement.clear();
+        mListUserReplacement.addAll(users);
     }
 
     @Override
@@ -1419,11 +1429,30 @@ public class RequestOffViewModel extends BaseRequestOff
     }
 
     public void onClickReplacement(View view) {
-        // TODO: 2/8/18 remind set replacement id and replacement name
-        // TODO: 2/8/18 delete after finish logic for this feature
-        mRequestOff.setReplacementId(0);
-        mRequestOff.setReplacementName("Le Nha Minh");
-        notifyPropertyChanged(BR.requestOff);
+        List<String> userNames = new ArrayList<>();
+        userNames.add("No selected!");
+        for (User user : mListUserReplacement) {
+            userNames.add(user.getName());
+        }
+        mDialogManager.dialogListSingleChoice("ABC",
+                userNames.toArray(new String[userNames.size()]), mCurrentReplacementPosition,
+                new MaterialDialog.ListCallbackSingleChoice() {
+                    @Override
+                    public boolean onSelection(MaterialDialog materialDialog, View view, int i,
+                            CharSequence charSequence) {
+                        if (i == 0) {
+                            mRequestOff.setReplacementName(null);
+                            mRequestOff.setReplacementId(null);
+                        } else {
+                            User user = mListUserReplacement.get(i);
+                            mRequestOff.setReplacementName(user.getName());
+                            mRequestOff.setReplacementId(user.getId());
+                        }
+                        mCurrentReplacementPosition = i;
+                        notifyPropertyChanged(BR.requestOff);
+                        return false;
+                    }
+                });
     }
 
     private void validateEndDate(String endDate) {
