@@ -60,7 +60,7 @@ public class User extends BaseModel implements Parcelable {
     private String mContractDate;
     @Expose
     @SerializedName("avatar")
-    private String mAvatar;
+    private Object mAvatar;
     @Expose
     @SerializedName("workspaces")
     private List<Branch> mBranches;
@@ -157,7 +157,7 @@ public class User extends BaseModel implements Parcelable {
         dest.writeString(mBirthday);
         dest.writeParcelable(mCompany, flags);
         dest.writeString(mContractDate);
-        dest.writeString(mAvatar);
+        dest.writeString((String) mAvatar);
         dest.writeTypedList(mBranches);
         dest.writeTypedList(mGroups);
         dest.writeString(mStartProbationDate);
@@ -241,7 +241,7 @@ public class User extends BaseModel implements Parcelable {
     }
 
     public String getAvatar() {
-        return mAvatar;
+        return (String) mAvatar;
     }
 
     public void setAvatar(String avatar) {

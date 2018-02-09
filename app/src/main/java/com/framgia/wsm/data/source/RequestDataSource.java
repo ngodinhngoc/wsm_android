@@ -4,6 +4,7 @@ import com.framgia.wsm.data.model.LeaveRequest;
 import com.framgia.wsm.data.model.OffRequest;
 import com.framgia.wsm.data.model.QueryRequest;
 import com.framgia.wsm.data.model.RequestOverTime;
+import com.framgia.wsm.data.model.User;
 import com.framgia.wsm.data.source.remote.api.request.ActionRequest;
 import com.framgia.wsm.data.source.remote.api.request.RequestLeaveRequest;
 import com.framgia.wsm.data.source.remote.api.request.RequestOffRequest;
@@ -59,6 +60,8 @@ public interface RequestDataSource {
 
         Single<BaseResponse<List<ActionRequestResponse>>> approveAllRequest(
                 ActionRequest actionRequest);
+
+        Single<BaseResponse<List<User>>> getListReplacement(int groupId);
 
         Single<BaseResponse> sendEmail(String email);
 

@@ -154,4 +154,7 @@ public interface WSMApi {
 
     @PUT("api/dashboard/passwords")
     Single<Object> resetPassword(@Body ResetPasswordRequest resetPasswordRequest);
+
+    @GET("api/dashboard/get_users_group")
+    Single<BaseResponse<List<User>>> getListReplacement(@Query("group_id") int groupId);
 }

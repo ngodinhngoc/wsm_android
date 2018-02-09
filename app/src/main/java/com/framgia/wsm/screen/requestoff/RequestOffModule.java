@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import com.framgia.wsm.data.model.OffRequest;
+import com.framgia.wsm.data.source.RequestRepository;
 import com.framgia.wsm.data.source.UserRepository;
 import com.framgia.wsm.data.source.local.UserLocalDataSource;
+import com.framgia.wsm.data.source.remote.RequestRemoteDataSource;
 import com.framgia.wsm.data.source.remote.UserRemoteDataSource;
 import com.framgia.wsm.utils.Constant;
 import com.framgia.wsm.utils.dagger.ActivityScope;
@@ -45,8 +47,10 @@ public class RequestOffModule {
     @ActivityScope
     @Provides
     public RequestOffContract.Presenter providePresenter(UserRepository userRepository,
-            BaseSchedulerProvider baseSchedulerProvider, Validator validator) {
-        return new RequestOffPresenter(userRepository, baseSchedulerProvider, validator);
+            RequestRepository requestRepository, BaseSchedulerProvider baseSchedulerProvider,
+            Validator validator) {
+        return new RequestOffPresenter(userRepository, requestRepository, baseSchedulerProvider,
+                validator);
     }
 
     @ActivityScope
@@ -66,6 +70,12 @@ public class RequestOffModule {
     UserRepository provideUserRepository(UserLocalDataSource userLocalDataSource,
             UserRemoteDataSource remoteDataSource) {
         return new UserRepository(userLocalDataSource, remoteDataSource);
+    }
+
+    @ActivityScope
+    @Provides
+    RequestRepository provideRequestRepository(RequestRemoteDataSource remoteDataSource) {
+        return new RequestRepository(remoteDataSource);
     }
 
     @ActivityScope
