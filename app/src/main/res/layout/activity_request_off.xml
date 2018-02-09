@@ -366,6 +366,30 @@
                         >
 
                         <android.support.design.widget.TextInputLayout
+                            style="@style/StyleTextHint"
+                            >
+
+                            <EditText
+                                android:hint="@string/replacement"
+                                android:onClick="@{viewModel::onClickReplacement}"
+                                android:text="@{viewModel.requestOff.replacementName}"
+                                style="@style/StyleText"
+                                />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <ImageView
+                            app:srcCompat="@drawable/ic_arrow_drop_down"
+                            tools:ignore="ContentDescription"
+                            style="@style/StyleImageDropDown"
+                            />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <android.support.design.widget.TextInputLayout
                             bind:errorTextInputLayout="@{viewModel.reasonError}"
                             style="@style/StyleTextHint"
                             >

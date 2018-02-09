@@ -403,5 +403,6 @@
     <string name="total_of_fine_by_block">Tổng thời gian phạt theo block</string>
     <string name="total_real_penal_time">Tổng thời gian phạt thực tế</string>
     <string name="minute">%s (m)</string>
+    <string name="replacement">Người thay thế</string>
 
 </resources>
